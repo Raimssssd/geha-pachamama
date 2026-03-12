@@ -361,6 +361,51 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
           </div>
           <div class="evento-meta"><span class="em-item">📅 15 e 16/04/2026</span><span class="em-item">💻 Online · Gratuito</span></div>
           <div style="margin-top:14px;"><a href="https://meet.google.com/agw-wakw-mkv" target="_blank" class="btn btn-primary" style="font-size:9px;padding:9px 20px;">🎥 Acessar sala do evento</a></div>
+
+          <!-- INSCRIÇÕES -->
+          <div style="margin-top:32px;border-top:1px solid rgba(200,134,10,0.2);padding-top:28px;">
+            <div style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:var(--gold-light);text-transform:uppercase;margin-bottom:20px;">Inscrições</div>
+
+            <!-- TABS -->
+            <div style="display:flex;gap:0;margin-bottom:0;">
+              <button onclick="showTab('ouvinte')" id="tab-ouvinte" style="flex:1;padding:10px;background:var(--gold);color:#0d0500;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;border:none;cursor:pointer;font-weight:700;">OUVINTE</button>
+              <button onclick="showTab('comunicado')" id="tab-comunicado" style="flex:1;padding:10px;background:rgba(200,134,10,0.15);color:var(--gold);font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.3);cursor:pointer;font-weight:700;">COMUNICADO</button>
+            </div>
+
+            <!-- FORM OUVINTE -->
+            <div id="form-ouvinte" style="background:rgba(200,134,10,0.05);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:24px;">
+              <p style="font-size:14px;color:var(--text-dim);margin-bottom:18px;">Inscreva-se como ouvinte para participar das palestras e comunicações do III Seminário Pachamama.</p>
+              <form name="inscricao-ouvinte" data-netlify="true" netlify-honeypot="bot-field-ouvinte" id="formOuvinte" style="display:flex;flex-direction:column;gap:12px;">
+                <input type="hidden" name="form-name" value="inscricao-ouvinte">
+                <input type="hidden" name="bot-field-ouvinte" style="display:none;">
+                <input type="text" name="nome" placeholder="Nome completo *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <input type="email" name="email" placeholder="E-mail *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <input type="text" name="instituicao" placeholder="Instituição de ensino / afiliação" style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <button type="submit" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:11px 24px;border:none;cursor:pointer;margin-top:4px;">ENVIAR INSCRIÇÃO</button>
+                <div id="sucOuvinte" style="display:none;color:#6fcf97;font-size:14px;text-align:center;padding:8px;">✓ Inscrição realizada com sucesso!</div>
+                <div id="errOuvinte" style="display:none;color:#eb5757;font-size:14px;text-align:center;padding:8px;">Erro ao enviar. Tente novamente.</div>
+              </form>
+            </div>
+
+            <!-- FORM COMUNICADO -->
+            <div id="form-comunicado" style="display:none;background:rgba(200,134,10,0.05);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:24px;">
+              <p style="font-size:14px;color:var(--text-dim);margin-bottom:18px;">Submeta sua comunicação para apresentação no Dia 2 do III Seminário Pachamama.</p>
+              <form name="inscricao-comunicado" data-netlify="true" netlify-honeypot="bot-field-com" id="formComunicado" style="display:flex;flex-direction:column;gap:12px;">
+                <input type="hidden" name="form-name" value="inscricao-comunicado">
+                <input type="hidden" name="bot-field-com" style="display:none;">
+                <input type="text" name="titulo" placeholder="Título da comunicação *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <input type="text" name="autor" placeholder="Nome do autor *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <input type="email" name="email-autor" placeholder="E-mail do autor *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <input type="text" name="orientador" placeholder="Nome do orientador (se houver)" style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <textarea name="resumo" placeholder="Resumo expandido * (entre 400 e 600 palavras)" required rows="7" style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;resize:vertical;"></textarea>
+                <input type="text" name="palavras-chave" placeholder="Palavras-chave * (separe por vírgula)" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:10px 14px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+                <button type="submit" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:11px 24px;border:none;cursor:pointer;margin-top:4px;">ENVIAR SUBMISSÃO</button>
+                <div id="sucCom" style="display:none;color:#6fcf97;font-size:14px;text-align:center;padding:8px;">✓ Submissão recebida com sucesso!</div>
+                <div id="errCom" style="display:none;color:#eb5757;font-size:14px;text-align:center;padding:8px;">Erro ao enviar. Tente novamente.</div>
+              </form>
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="evento-item">
@@ -558,6 +603,53 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
 function tm(){document.getElementById('navLinks').classList.toggle('open');}
 function cm(){document.getElementById('navLinks').classList.remove('open');}
 document.addEventListener('click',function(e){if(!document.querySelector('nav').contains(e.target))cm();});
+
+// Tabs de inscrição
+function showTab(tab) {
+  var isOuvinte = tab === 'ouvinte';
+  document.getElementById('form-ouvinte').style.display = isOuvinte ? 'block' : 'none';
+  document.getElementById('form-comunicado').style.display = isOuvinte ? 'none' : 'block';
+  document.getElementById('tab-ouvinte').style.background = isOuvinte ? 'var(--gold)' : 'rgba(200,134,10,0.15)';
+  document.getElementById('tab-ouvinte').style.color = isOuvinte ? '#0d0500' : 'var(--gold)';
+  document.getElementById('tab-comunicado').style.background = isOuvinte ? 'rgba(200,134,10,0.15)' : 'var(--gold)';
+  document.getElementById('tab-comunicado').style.color = isOuvinte ? 'var(--gold)' : '#0d0500';
+}
+
+// Formulário Inscrição Ouvinte
+document.getElementById('formOuvinte').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(new FormData(form)).toString()
+  })
+  .then(function() {
+    form.reset();
+    document.getElementById('sucOuvinte').style.display = 'block';
+    document.getElementById('errOuvinte').style.display = 'none';
+  })
+  .catch(function() {
+    document.getElementById('errOuvinte').style.display = 'block';
+    document.getElementById('sucOuvinte').style.display = 'none';
+  });
+});
+
+// Formulário Inscrição Comunicado
+document.getElementById('formComunicado').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(new FormData(form)).toString()
+  })
+  .then(function() {
+    form.reset();
+    document.getElementById('sucCom').style.display = 'block';
+    document.getElementById('errCom').style.display = 'none';
+  })
+  .catch(function() {
+    document.getElementById('errCom').style.display = 'block';
+    document.getElementById('sucCom').style.display = 'none';
+  });
+});
 
 // Formulário de contato via AJAX (Netlify Forms)
 document.getElementById('formContato').addEventListener('submit', function(e) {
