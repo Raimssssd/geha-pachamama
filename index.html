@@ -483,19 +483,21 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
         <h3>Entre em contato</h3>
         <p>Para informações sobre o grupo, submissão de trabalhos, inscrições em eventos ou parcerias acadêmicas, utilize os canais abaixo.</p>
         <div class="ci-items">
-          <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-label">E-mail</div><div class="ci-val">[email do grupo — a preencher]</div></div></div>
+          <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-label">E-mail</div><div class="ci-val">raimundo.cm@unitins.br</div></div></div>
           <div class="ci-item"><div class="ci-icon">🏛</div><div><div class="ci-label">Instituição</div><div class="ci-val">UEMASUL – Campus Imperatriz<br>CCHSL – Curso de História</div></div></div>
           <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Localização</div><div class="ci-val">Imperatriz, Maranhão – Brasil</div></div></div>
           <div class="ci-item"><div class="ci-icon">📱</div><div><div class="ci-label">Redes sociais</div><div class="ci-val">[Instagram / Facebook — a preencher]</div></div></div>
         </div>
       </div>
-      <form class="form-col" onsubmit="return false;">
-        <div class="fg"><label class="fl">Nome</label><input type="text" class="fi" placeholder="Seu nome completo"></div>
-        <div class="fg"><label class="fl">E-mail</label><input type="email" class="fi" placeholder="seu@email.com"></div>
-        <div class="fg"><label class="fl">Assunto</label><input type="text" class="fi" placeholder="Evento / Pesquisa / Publicação..."></div>
-        <div class="fg"><label class="fl">Mensagem</label><textarea class="ft" placeholder="Sua mensagem..."></textarea></div>
+      <form class="form-col" name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contato">
+        <input type="hidden" name="bot-field" style="display:none;">
+        <div class="fg"><label class="fl">Nome</label><input type="text" name="nome" class="fi" placeholder="Seu nome completo" required></div>
+        <div class="fg"><label class="fl">E-mail</label><input type="email" name="email" class="fi" placeholder="seu@email.com" required></div>
+        <div class="fg"><label class="fl">Assunto</label><input type="text" name="assunto" class="fi" placeholder="Evento / Pesquisa / Publicação..."></div>
+        <div class="fg"><label class="fl">Mensagem</label><textarea class="ft" name="mensagem" placeholder="Sua mensagem..." required></textarea></div>
         <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;">Enviar mensagem</button>
-        <p style="font-size:11px;color:var(--text-dim);text-align:center;">* Para ativar o envio, configure Netlify Forms ou Formspree.</p>
+        <p style="font-size:11px;color:var(--text-dim);text-align:center;">As mensagens serão recebidas diretamente no painel do Netlify.</p>
       </form>
     </div>
   </div>
