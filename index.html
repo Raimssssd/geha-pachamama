@@ -489,7 +489,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
           <div class="ci-item"><div class="ci-icon">📱</div><div><div class="ci-label">Redes sociais</div><div class="ci-val"><a href="https://www.instagram.com/pachamamaoficial?igsh=MTFudGtucGZtZzZrdw%3D%3D&utm_source=qr" target="_blank" style="color:var(--gold-light);text-decoration:none;">@pachamamaoficial</a> · Instagram</div></div></div>
         </div>
       </div>
-      <form class="form-col" name="contato" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="form-col" name="contato" id="formContato" data-netlify="true" netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contato">
         <input type="hidden" name="bot-field" style="display:none;">
         <div class="fg"><label class="fl">Nome</label><input type="text" name="nome" class="fi" placeholder="Seu nome completo" required></div>
@@ -497,7 +497,13 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
         <div class="fg"><label class="fl">Assunto</label><input type="text" name="assunto" class="fi" placeholder="Evento / Pesquisa / Publicação..."></div>
         <div class="fg"><label class="fl">Mensagem</label><textarea class="ft" name="mensagem" placeholder="Sua mensagem..." required></textarea></div>
         <button type="submit" class="btn btn-primary" style="width:100%;text-align:center;">Enviar mensagem</button>
-        <p style="font-size:11px;color:var(--text-dim);text-align:center;">As mensagens serão recebidas diretamente no painel do Netlify.</p>
+        <div id="formSucesso" style="display:none;background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.4);border-radius:4px;padding:16px;text-align:center;margin-top:8px;">
+          <p style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;color:var(--gold-light);text-transform:uppercase;">Mensagem enviada!</p>
+          <p style="font-size:13px;color:var(--text-dim);margin-top:4px;">Obrigado pelo contato. Responderemos em breve.</p>
+        </div>
+        <div id="formErro" style="display:none;background:rgba(122,40,0,0.2);border:1px solid rgba(122,40,0,0.5);border-radius:4px;padding:16px;text-align:center;margin-top:8px;">
+          <p style="font-size:13px;color:var(--gold-pale);">Erro ao enviar. Tente novamente ou envie e-mail para raimundo.cm@unitins.br</p>
+        </div>
       </form>
     </div>
   </div>
@@ -541,6 +547,25 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
 function tm(){document.getElementById('navLinks').classList.toggle('open');}
 function cm(){document.getElementById('navLinks').classList.remove('open');}
 document.addEventListener('click',function(e){if(!document.querySelector('nav').contains(e.target))cm();});
+
+// Formulário de contato via AJAX (Netlify Forms)
+document.getElementById('formContato').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var form = this;
+  var data = new FormData(form);
+  fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: new URLSearchParams(data).toString()
+  })
+  .then(function() {
+    form.reset();
+    document.getElementById('formSucesso').style.display = 'block';
+    document.getElementById('formErro').style.display = 'none';
+  })
+  .catch(function() {
+    document.getElementById('formErro').style.display = 'block';
+    document.getElementById('formSucesso').style.display = 'none';
+  });
+});
 </script>
 </body>
 </html>
