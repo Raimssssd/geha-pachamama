@@ -121,6 +121,9 @@ section{position:relative;z-index:1;padding:88px 0;}
 .evento-meta{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;}
 .em-item{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1.5px;color:var(--gold);opacity:.7;text-transform:uppercase;}
 
+/* CERTIFICADOS */
+#certificados{background:linear-gradient(180deg,var(--dark2) 0%,var(--dark) 100%);}
+
 /* PUBLICAÇÕES */
 #publicacoes{background:linear-gradient(180deg,var(--dark) 0%,var(--dark2) 100%);}
 .pub-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
@@ -205,6 +208,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
     <li><a href="#linhas" onclick="cm()">Pesquisa</a></li>
     <li><a href="#membros" onclick="cm()">Membros</a></li>
     <li><a href="#eventos" onclick="cm()">Eventos</a></li>
+    <li><a href="#certificados" onclick="cm()">Certificados</a></li>
     <li><a href="#grupo-estudos" onclick="cm()">Grupo de Estudos</a></li>
     <li><a href="#publicacoes" onclick="cm()">Publicações</a></li>
     <li><a href="#revista" onclick="cm()">Revista</a></li>
@@ -483,6 +487,56 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
   </div>
 </section>
 
+<!-- CERTIFICADOS -->
+<section id="certificados">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-kicker">Participação</div>
+      <h2 class="sec-title">Certificados</h2>
+      <div class="sec-rule"><div class="sr-line"></div><div class="sr-d"></div><div class="sr-line"></div></div>
+      <p style="margin-top:18px;font-size:16px;color:var(--text-dim);max-width:640px;margin-left:auto;margin-right:auto;line-height:1.8;">Digite o <strong style="color:var(--gold-pale);">e-mail usado na inscrição</strong> para localizar e baixar seu certificado personalizado.</p>
+    </div>
+
+    <!-- III Seminário -->
+    <div style="max-width:780px;margin:0 auto 48px;">
+      <div style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:28px;opacity:.8;">III Seminário Pachamama · 2026</div>
+
+      <!-- Abas -->
+      <div style="display:flex;gap:0;margin-bottom:0;">
+        <button onclick="showCertTab('cert-ouvinte')" id="ctab-ouvinte" style="flex:1;padding:11px;background:var(--gold);color:#0d0500;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;border:none;cursor:pointer;font-weight:700;transition:.2s;">🎓 OUVINTE</button>
+        <button onclick="showCertTab('cert-apres')" id="ctab-apres" style="flex:1;padding:11px;background:rgba(200,134,10,0.15);color:var(--gold);font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.3);cursor:pointer;font-weight:700;transition:.2s;">📋 APRESENTADOR DE TRABALHO</button>
+      </div>
+
+      <!-- Painel Ouvinte -->
+      <div id="cert-ouvinte" style="background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual se inscreveu como <strong style="color:var(--gold-pale);">ouvinte</strong> no III Seminário Pachamama.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" id="email-ouvinte" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.35);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+          <button onclick="buscarCertificado('ouvinte')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
+        </div>
+        <div id="msg-ouvinte" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
+        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; Os certificados ficam disponíveis após a realização do evento (a partir de 17/04/2026).</div>
+      </div>
+
+      <!-- Painel Apresentador -->
+      <div id="cert-apres" style="display:none;background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual submeteu sua <strong style="color:var(--gold-pale);">comunicação</strong> no III Seminário Pachamama.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" id="email-apres" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.35);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+          <button onclick="buscarCertificado('apres')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
+        </div>
+        <div id="msg-apres" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
+        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; Os certificados ficam disponíveis após a realização do evento (a partir de 17/04/2026).</div>
+      </div>
+
+      <div style="margin-top:24px;text-align:center;padding:16px 24px;background:rgba(200,134,10,0.03);border:1px solid rgba(200,134,10,0.08);border-radius:4px;">
+        <p style="font-size:13px;color:var(--text-dim);margin:0;">Dúvidas? Entre em contato: <strong style="color:var(--gold-pale);">raimundo.cm@unitins.br</strong></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- GRUPO DE ESTUDOS -->
 <section id="grupo-estudos">
   <div class="container">
@@ -646,6 +700,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
         <li><a href="#linhas">Linhas de pesquisa</a></li>
         <li><a href="#membros">Membros</a></li>
         <li><a href="#eventos">Eventos</a></li>
+        <li><a href="#certificados">Certificados</a></li>
         <li><a href="#publicacoes">Publicações</a></li>
         <li><a href="#revista">Revista Pachamama</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -666,10 +721,166 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 function tm(){document.getElementById('navLinks').classList.toggle('open');}
 function cm(){document.getElementById('navLinks').classList.remove('open');}
 document.addEventListener('click',function(e){if(!document.querySelector('nav').contains(e.target))cm();});
+
+// --- CERTIFICADOS ---
+function showCertTab(tab) {
+  var isOuv = tab === 'cert-ouvinte';
+  document.getElementById('cert-ouvinte').style.display = isOuv ? 'block' : 'none';
+  document.getElementById('cert-apres').style.display   = isOuv ? 'none'  : 'block';
+  document.getElementById('ctab-ouvinte').style.background = isOuv ? 'var(--gold)' : 'rgba(200,134,10,0.15)';
+  document.getElementById('ctab-ouvinte').style.color   = isOuv ? '#0d0500' : 'var(--gold)';
+  document.getElementById('ctab-apres').style.background   = isOuv ? 'rgba(200,134,10,0.15)' : 'var(--gold)';
+  document.getElementById('ctab-apres').style.color     = isOuv ? 'var(--gold)' : '#0d0500';
+}
+
+async function buscarCertificado(tipo) {
+  var emailId = tipo === 'ouvinte' ? 'email-ouvinte' : 'email-apres';
+  var msgId   = tipo === 'ouvinte' ? 'msg-ouvinte'   : 'msg-apres';
+  var email   = document.getElementById(emailId).value.trim().toLowerCase();
+  var msgEl   = document.getElementById(msgId);
+
+  if (!email) {
+    msgEl.innerHTML = '<span style="color:#e8c88a;">⚠️ Por favor, informe seu e-mail.</span>';
+    return;
+  }
+
+  msgEl.innerHTML = '<span style="color:var(--gold);font-style:italic;">🔍 Buscando inscrição...</span>';
+
+  var arquivo = tipo === 'ouvinte' ? 'participantes-ouvintes.json' : 'participantes-apresentadores.json';
+
+  try {
+    var resp = await fetch(arquivo + '?v=' + Date.now());
+    if (!resp.ok) {
+      msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Os certificados ainda não foram disponibilizados. Volte após 17 de abril de 2026.</span>';
+      return;
+    }
+    var dados = await resp.json();
+    var nome  = dados[email];
+    if (!nome) {
+      msgEl.innerHTML = '<span style="color:#eb5757;">❌ E-mail não encontrado. Verifique se é o mesmo usado na inscrição, ou entre em contato com a organização.</span>';
+      return;
+    }
+    msgEl.innerHTML = '<span style="color:#6fcf97;">✓ Inscrição confirmada! Gerando seu certificado...</span>';
+    setTimeout(function(){ gerarCertificadoPDF(nome, tipo); msgEl.innerHTML = '<span style="color:#6fcf97;">✅ Certificado gerado! Verifique seus downloads.</span>'; }, 400);
+  } catch(err) {
+    msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Os certificados ainda não foram disponibilizados. Volte após 17 de abril de 2026.</span>';
+  }
+}
+
+function gerarCertificadoPDF(nome, tipo) {
+  var jsPDF = window.jspdf.jsPDF;
+  var doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+  var W = 297, H = 210;
+
+  // Fundo escuro
+  doc.setFillColor(13, 5, 0);
+  doc.rect(0, 0, W, H, 'F');
+
+  // Borda dupla dourada
+  doc.setDrawColor(200, 134, 10);
+  doc.setLineWidth(1.8);
+  doc.rect(10, 10, W-20, H-20);
+  doc.setLineWidth(0.5);
+  doc.rect(14, 14, W-28, H-28);
+
+  // Ornamento: pequenos losangos nos cantos
+  var corners = [[10,10],[W-10,10],[10,H-10],[W-10,H-10]];
+  doc.setFillColor(200,134,10);
+  corners.forEach(function(c){doc.circle(c[0],c[1],1.5,'F');});
+
+  // Cabeçalho
+  doc.setTextColor(245,200,66);
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(11);
+  doc.text('GEHA-PACHAMAMA', W/2, 32, {align:'center'});
+
+  doc.setTextColor(200,134,10);
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(7.5);
+  doc.text('GRUPO DE ESTUDOS EM HISTÓRIA DAS AMÉRICAS  ·  UEMASUL', W/2, 38.5, {align:'center'});
+
+  // Linha ornamental
+  doc.setDrawColor(200,134,10);
+  doc.setLineWidth(0.4);
+  doc.line(50, 43, W-50, 43);
+  doc.setFillColor(200,134,10);
+  doc.circle(W/2, 43, 1.2, 'F');
+
+  // Título do certificado
+  doc.setTextColor(245,200,66);
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(tipo === 'ouvinte' ? 20 : 17);
+  var titulo = tipo === 'ouvinte' ? 'CERTIFICADO DE PARTICIPAÇÃO' : 'CERTIFICADO DE APRESENTAÇÃO DE TRABALHO';
+  doc.text(titulo, W/2, 60, {align:'center'});
+
+  // Texto intro
+  doc.setTextColor(212,184,150);
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(11);
+  doc.text('Certificamos que', W/2, 76, {align:'center'});
+
+  // Nome em destaque
+  doc.setTextColor(245,200,66);
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(19);
+  doc.text(nome.toUpperCase(), W/2, 89, {align:'center'});
+  // Sublinhado
+  var nw = doc.getTextWidth(nome.toUpperCase());
+  doc.setDrawColor(200,134,10);
+  doc.setLineWidth(0.5);
+  doc.line(W/2 - nw/2, 91.5, W/2 + nw/2, 91.5);
+
+  // Continuação
+  doc.setTextColor(212,184,150);
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(11);
+  var acao = tipo === 'ouvinte' ? 'participou como ouvinte no' : 'apresentou comunicação acadêmica no';
+  doc.text(acao, W/2, 102, {align:'center'});
+
+  // Nome do evento
+  doc.setTextColor(232,200,138);
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(14);
+  doc.text('III SEMINÁRIO PACHAMAMA', W/2, 113, {align:'center'});
+
+  // Tema e detalhes
+  doc.setTextColor(180,150,110);
+  doc.setFont('helvetica','italic');
+  doc.setFontSize(8.5);
+  doc.text('Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos', W/2, 121, {align:'center'});
+  doc.setFont('helvetica','normal');
+  doc.text('15 e 16 de abril de 2026  ·  Modalidade Online  ·  Carga horária: 2 (duas) horas', W/2, 128, {align:'center'});
+
+  // Linha antes da assinatura
+  doc.setDrawColor(200,134,10);
+  doc.setLineWidth(0.3);
+  doc.line(70, 148, W-70, 148);
+  doc.circle(W/2, 148, 1, 'F');
+
+  // Assinatura
+  doc.setTextColor(200,134,10);
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(10);
+  doc.text('Prof. Dr. Raimundo Carvalho Moura Filho', W/2, 159, {align:'center'});
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(8.5);
+  doc.setTextColor(170,140,100);
+  doc.text('Coordenador do GEHA-Pachamama  ·  Universidade Estadual da Região Tocantina do Maranhão – UEMASUL', W/2, 166, {align:'center'});
+
+  // Rodapé
+  doc.setTextColor(80,60,30);
+  doc.setFontSize(7);
+  doc.text('Imperatriz – MA, abril de 2026', W/2, 183, {align:'center'});
+  doc.text('pachamamauemasul.com', W/2, 188, {align:'center'});
+
+  var nomeArq = 'Certificado-' + (tipo==='ouvinte'?'Ouvinte':'Apresentador') + '-III-Seminario-Pachamama.pdf';
+  doc.save(nomeArq);
+}
 
 // Verifica prazo de inscrição de ouvinte (encerra 14/04/2026)
 (function() {
