@@ -879,13 +879,9 @@ function gerarCertificadoPDF(nome, tipo, sigBase64) {
     doc.setFillColor(200,134,10);
     doc.circle(W/2, 140, 1, 'F');
 
-    // Área clara atrás da assinatura (para traço de caneta aparecer)
-    doc.setFillColor(245, 240, 228); // creme
-    doc.roundedRect(W/2 - 52, 141, 104, 42, 2, 2, 'F');
-
-    // Assinatura escura sobre fundo claro
+    // Assinatura dourada transparente (sem fundo)
     if (sigBase64) {
-      doc.addImage(sigBase64, 'PNG', W/2 - 48, 142, 96, 40, '', 'FAST');
+      doc.addImage(sigBase64, 'PNG', W/2 - 46, 141, 92, 34, '', 'FAST');
     }
 
     // Linha abaixo da assinatura
@@ -904,7 +900,7 @@ function gerarCertificadoPDF(nome, tipo, sigBase64) {
     doc.text('Coordenador do GEHA-Pachamama  ·  UEMASUL', W/2, 198, {align:'center'});
 
     // ID único de validação
-    var certId = btoa(unescape(encodeURIComponent(nome + '|' + tipo + '|III-Pachamama-2026'))).replace(/[=+/]/g,'').substring(0,24);
+    var certId = btoa(unescape(encodeURIComponent(nome + '|' + tipo + '|III-Pachamama-2026'))).replace(/=/g,'').replace(/[+]/g,'-').replace(/[/]/g,'_');
     var validUrl = 'https://pachamamauemasul.com/#validar=' + certId;
 
     // QR Code
@@ -1005,6 +1001,51 @@ document.getElementById('formContato').addEventListener('submit', function(e) {
     document.getElementById('formSucesso').style.display = 'none';
   });
 });
+
+// VALIDAÇÃO DE CERTIFICADO VIA URL HASH
+function verificarHash() {
+  var hash = window.location.hash || '';
+  if (hash.indexOf('validar=') !== -1) {
+    var certId = hash.split('validar=')[1] || '';
+    if (certId) mostrarValidacao(decodeURIComponent(certId));
+  }
+}
+function mostrarValidacao(certId) {
+  var modal = document.getElementById('validar-modal');
+  var conteudo = document.getElementById('validar-conteudo');
+  if (!modal || !conteudo) return;
+  try {
+    var padded = certId.replace(/-/g,'+').replace(/_/g,'/');
+    while (padded.length % 4) padded += '=';
+    var decoded = decodeURIComponent(escape(atob(padded)));
+    var partes = decoded.split('|');
+    if (partes.length === 3 && partes[2] === 'III-Pachamama-2026') {
+      var nome = partes[0];
+      var tipo = partes[1] === 'ouvinte' ? 'Ouvinte' : 'Apresentador de Trabalho';
+      conteudo.innerHTML =
+        '<div style="font-size:42px;margin-bottom:14px;">✅</div>' +
+        '<div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--gold);margin-bottom:22px;">CERTIFICADO VÁLIDO</div>' +
+        '<div style="background:rgba(200,134,10,0.08);border:1px solid rgba(200,134,10,0.25);border-radius:4px;padding:22px;margin-bottom:18px;text-align:left;">' +
+        '<div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;letter-spacing:1px;">EMITIDO PARA</div>' +
+        '<div style="font-family:'Cinzel',serif;font-size:16px;color:var(--gold-light);margin-bottom:16px;">' + nome + '</div>' +
+        '<div style="font-size:13px;color:var(--text-dim);line-height:2;">' +
+        'Modalidade: <strong style="color:var(--gold-pale);">' + tipo + '</strong><br>' +
+        'Evento: <strong style="color:var(--gold-pale);">III Seminário Pachamama</strong><br>' +
+        'Data: <strong style="color:var(--gold-pale);">15 e 16 de abril de 2026</strong><br>' +
+        'Carga horária: <strong style="color:var(--gold-pale);">2 horas</strong>' +
+        '</div></div>' +
+        '<div style="font-size:11px;color:var(--text-dim);">GEHA-Pachamama &middot; UEMASUL</div>';
+    } else { throw new Error(); }
+  } catch(e) {
+    conteudo.innerHTML =
+      '<div style="font-size:42px;margin-bottom:14px;">❌</div>' +
+      '<div style="font-family:'Cinzel',serif;font-size:13px;color:#eb5757;margin-bottom:14px;">CERTIFICADO NÃO RECONHECIDO</div>' +
+      '<p style="font-size:14px;color:var(--text-dim);">Código inválido ou não emitido pelo GEHA-Pachamama.</p>';
+  }
+  modal.style.display = 'flex';
+}
+window.addEventListener('load', verificarHash);
+window.addEventListener('hashchange', verificarHash);
 </script>
 
 <!-- VALIDAÇÃO DE CERTIFICADOS -->
