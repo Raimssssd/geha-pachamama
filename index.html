@@ -499,7 +499,14 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
 
     <!-- III Seminário -->
     <div style="max-width:780px;margin:0 auto 48px;">
-      <div style="font-family:Cinzel,serif;font-size:12px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:28px;opacity:.8;">III Seminário Pachamama · 2026</div>
+      <!-- Seletor de Evento -->
+      <div style="margin-bottom:28px;text-align:center;">
+        <label for="select-evento" style="display:block;font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;opacity:.8;">Selecione o Evento</label>
+        <select id="select-evento" onchange="atualizarInfoEvento()" style="background:#1a0e04;border:1px solid rgba(200,134,10,0.4);color:var(--cream);font-family:'Crimson Pro',serif;font-size:15px;padding:10px 18px;border-radius:2px;cursor:pointer;min-width:320px;outline:none;">
+          <option value="III-Pachamama-2026">III Seminário Pachamama · 2026</option>
+        </select>
+        <div id="evento-info" style="margin-top:10px;font-size:12px;color:var(--text-dim);font-style:italic;"></div>
+      </div>
 
       <!-- Abas -->
       <div style="display:flex;gap:0;margin-bottom:0;">
@@ -739,31 +746,102 @@ function showCertTab(tab) {
   document.getElementById('ctab-apres').style.color     = isOuv ? 'var(--gold)' : '#0d0500';
 }
 
+// ── Configuração de Eventos ──────────────────────────────────────────
+var EVENTOS = {
+  'III-Pachamama-2026': {
+    label: 'III Seminário Pachamama · 2026',
+    nomeEvento: 'III SEMINÁRIO PACHAMAMA',
+    subtitulo: 'Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos',
+    data: '15 e 16 de abril de 2026',
+    modalidade: 'Online',
+    cargaHoraria: '2 (duas) horas',
+    cargaHorariaNum: '2',
+    rodape: 'Imperatriz – MA, abril de 2026',
+    disponivelA: '2026-04-17T00:00:00',
+    jsonOuvinte: 'participantes-ouvintes.json',
+    jsonApresentador: 'participantes-apresentadores.json',
+    ativo: true
+  }
+  // Para adicionar novo evento, copie o bloco acima e ajuste os valores.
+  // Exemplo:
+  // ,'IV-Pachamama-2027': {
+  //   label: 'IV Seminário Pachamama · 2027',
+  //   ...
+  //   jsonOuvinte: 'participantes-ouvintes-IV.json',
+  //   jsonApresentador: 'participantes-apresentadores-IV.json',
+  //   ativo: true
+  // }
+};
+
+function atualizarInfoEvento() {
+  var selectEl = document.getElementById('select-evento');
+  var infoEl   = document.getElementById('evento-info');
+  if (!selectEl || !infoEl) return;
+  var ev = EVENTOS[selectEl.value];
+  if (ev) {
+    infoEl.innerHTML = ev.data + ' &nbsp;·&nbsp; ' + ev.modalidade + ' &nbsp;·&nbsp; ' + ev.cargaHoraria;
+  }
+}
+
+// Popula o select dinamicamente e inicializa info
+(function() {
+  window.addEventListener('DOMContentLoaded', function() {
+    var sel = document.getElementById('select-evento');
+    if (!sel) return;
+    // Limpa e repopula a partir do objeto EVENTOS
+    sel.innerHTML = '';
+    Object.keys(EVENTOS).forEach(function(id) {
+      var opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = EVENTOS[id].label;
+      sel.appendChild(opt);
+    });
+    atualizarInfoEvento();
+  });
+})();
+
 async function buscarCertificado(tipo) {
   var emailId = tipo === 'ouvinte' ? 'email-ouvinte' : 'email-apres';
   var msgId   = tipo === 'ouvinte' ? 'msg-ouvinte'   : 'msg-apres';
   var email   = document.getElementById(emailId).value.trim().toLowerCase();
   var msgEl   = document.getElementById(msgId);
 
+  // Lê evento selecionado
+  var selectEl = document.getElementById('select-evento');
+  var eventoId = selectEl ? selectEl.value : 'III-Pachamama-2026';
+  var evento   = EVENTOS[eventoId];
+
   if (!email) {
     msgEl.innerHTML = '<span style="color:#e8c88a;">⚠️ Por favor, informe seu e-mail.</span>';
+    return;
+  }
+  if (!evento) {
+    msgEl.innerHTML = '<span style="color:#eb5757;">❌ Evento não encontrado. Recarregue a página.</span>';
     return;
   }
 
   msgEl.innerHTML = '<span style="color:var(--gold);font-style:italic;">🔍 Buscando inscrição...</span>';
 
-  var arquivo = tipo === 'ouvinte' ? 'participantes-ouvintes.json' : 'participantes-apresentadores.json';
+  // Verifica disponibilidade
+  if (new Date() < new Date(evento.disponivelA)) {
+    var d = new Date(evento.disponivelA);
+    var ds = d.toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric'});
+    msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Os certificados ainda não foram disponibilizados. Volte após ' + ds + '.</span>';
+    return;
+  }
+
+  var arquivo = tipo === 'ouvinte' ? evento.jsonOuvinte : evento.jsonApresentador;
 
   try {
     var resp = await fetch(arquivo + '?v=' + Date.now());
     if (!resp.ok) {
-      msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Os certificados ainda não foram disponibilizados. Volte após 17 de abril de 2026.</span>';
+      msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Lista de participantes não disponível para este evento.</span>';
       return;
     }
     var dados = await resp.json();
     var nome  = dados[email];
     if (!nome) {
-      msgEl.innerHTML = '<span style="color:#eb5757;">❌ E-mail não encontrado. Verifique se é o mesmo usado na inscrição.</span>';
+      msgEl.innerHTML = '<span style="color:#eb5757;">❌ E-mail não encontrado. Verifique se é o mesmo usado na inscrição do evento selecionado.</span>';
       return;
     }
     msgEl.innerHTML = '<span style="color:#6fcf97;">✓ Inscrição confirmada! Gerando certificado...</span>';
@@ -782,7 +860,7 @@ async function buscarCertificado(tipo) {
       }
     } catch(e) { /* sem assinatura, continua sem ela */ }
 
-    gerarCertificadoPDF(nome, tipo, sigBase64);
+    gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento);
     msgEl.innerHTML = '<span style="color:#6fcf97;">✅ Certificado gerado! Verifique seus downloads.</span>';
 
   } catch(err) {
@@ -790,7 +868,7 @@ async function buscarCertificado(tipo) {
   }
 }
 
-function gerarCertificadoPDF(nome, tipo, sigBase64) {
+function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
   try {
     var jsPDF = window.jspdf.jsPDF;
     var doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -862,15 +940,15 @@ function gerarCertificadoPDF(nome, tipo, sigBase64) {
     doc.setTextColor(232,200,138);
     doc.setFont('helvetica','bold');
     doc.setFontSize(14);
-    doc.text('III SEMINÁRIO PACHAMAMA', W/2, 113, {align:'center'});
+    doc.text(evento.nomeEvento, W/2, 113, {align:'center'});
 
     // Tema e detalhes
     doc.setTextColor(180,150,110);
     doc.setFont('helvetica','italic');
     doc.setFontSize(8.5);
-    doc.text('Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos', W/2, 121, {align:'center'});
+    doc.text(evento.subtitulo, W/2, 121, {align:'center'});
     doc.setFont('helvetica','normal');
-    doc.text('15 e 16 de abril de 2026  ·  Modalidade Online  ·  Carga horária: 2 (duas) horas', W/2, 128, {align:'center'});
+    doc.text(evento.data + '  ·  Modalidade ' + evento.modalidade + '  ·  Carga horária: ' + evento.cargaHoraria, W/2, 128, {align:'center'});
 
     // Linha antes da assinatura
     doc.setDrawColor(200,134,10);
@@ -900,7 +978,7 @@ function gerarCertificadoPDF(nome, tipo, sigBase64) {
     doc.text('Coordenador do GEHA-Pachamama  ·  UEMASUL', W/2, 198, {align:'center'});
 
     // ID único de validação
-    var certId = btoa(unescape(encodeURIComponent(nome + '|' + tipo + '|III-Pachamama-2026'))).replace(/=/g,'').replace(/[+]/g,'-').replace(/[/]/g,'_');
+    var certId = btoa(unescape(encodeURIComponent(nome + '|' + tipo + '|' + eventoId))).replace(/=/g,'').replace(/[+]/g,'-').replace(/[/]/g,'_');
     var validUrl = 'https://pachamamauemasul.com/#validar=' + certId;
 
     // QR Code
@@ -915,9 +993,9 @@ function gerarCertificadoPDF(nome, tipo, sigBase64) {
     // Rodapé central
     doc.setTextColor(80,60,30);
     doc.setFontSize(7);
-    doc.text('Imperatriz – MA, abril de 2026', W/2, H-8, {align:'center'});
+    doc.text(evento.rodape, W/2, H-8, {align:'center'});
 
-    var nomeArq = 'Certificado-' + (tipo==='ouvinte'?'Ouvinte':'Apresentador') + '-III-Seminario-Pachamama.pdf';
+    var nomeArq = 'Certificado-' + (tipo==='ouvinte'?'Ouvinte':'Apresentador') + '-' + eventoId + '.pdf';
     doc.save(nomeArq);
   } catch(err) {
     alert('Erro ao gerar certificado: ' + err.message);
