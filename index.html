@@ -879,25 +879,29 @@ function gerarCertificadoPDF(nome, tipo, sigBase64) {
     doc.setFillColor(200,134,10);
     doc.circle(W/2, 140, 1, 'F');
 
-    // Assinatura
+    // Área clara atrás da assinatura (para traço de caneta aparecer)
+    doc.setFillColor(245, 240, 228); // creme
+    doc.roundedRect(W/2 - 52, 141, 104, 42, 2, 2, 'F');
+
+    // Assinatura escura sobre fundo claro
     if (sigBase64) {
-      doc.addImage(sigBase64, 'PNG', W/2 - 38, 141, 76, 39, '', 'FAST');
+      doc.addImage(sigBase64, 'PNG', W/2 - 48, 142, 96, 40, '', 'FAST');
     }
 
     // Linha abaixo da assinatura
     doc.setDrawColor(200,134,10);
     doc.setLineWidth(0.3);
-    doc.line(W/2-55, 183, W/2+55, 183);
+    doc.line(W/2-55, 186, W/2+55, 186);
 
     // Nome e cargo
     doc.setTextColor(200,134,10);
     doc.setFont('helvetica','bold');
     doc.setFontSize(10);
-    doc.text('Prof. Dr. Raimundo Carvalho Moura Filho', W/2, 189, {align:'center'});
+    doc.text('Prof. Dr. Raimundo Carvalho Moura Filho', W/2, 192, {align:'center'});
     doc.setFont('helvetica','normal');
     doc.setFontSize(7.5);
     doc.setTextColor(170,140,100);
-    doc.text('Coordenador do GEHA-Pachamama  ·  UEMASUL', W/2, 195, {align:'center'});
+    doc.text('Coordenador do GEHA-Pachamama  ·  UEMASUL', W/2, 198, {align:'center'});
 
     // ID único de validação
     var certId = btoa(unescape(encodeURIComponent(nome + '|' + tipo + '|III-Pachamama-2026'))).replace(/[=+/]/g,'').substring(0,24);
