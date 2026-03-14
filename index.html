@@ -942,10 +942,63 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
     <p>© 2026 GEHA-Pachamama · UEMASUL</p>
     <p>Coord.: Prof. Dr. Raimundo Carvalho Moura Filho</p>
   </div>
-  <div style="text-align:center;padding:10px 0 14px;border-top:1px solid rgba(200,134,10,0.1);">
-    <span style="font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:rgba(200,134,10,0.45);text-transform:uppercase;margin-right:10px;">Visitantes</span>
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fpachamamauemasul.com&count_bg=%23C8860A&title_bg=%231a0800&icon=&icon_color=%23C8860A&title=visitas&edge_flat=true" alt="Contador de visitas" style="vertical-align:middle;height:20px;border-radius:2px;">
+  <div style="background:rgba(200,134,10,0.04);border-top:1px solid rgba(200,134,10,0.15);padding:18px 40px;">
+    <div style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:32px;">
+
+      <!-- Total de visitas -->
+      <div style="text-align:center;">
+        <div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:rgba(200,134,10,0.5);text-transform:uppercase;margin-bottom:4px;">Total de Visitas</div>
+        <div id="visit-count" style="font-family:'Cinzel Decorative',serif;font-size:28px;color:var(--gold-light);line-height:1;text-shadow:0 0 20px rgba(200,134,10,0.4);">—</div>
+      </div>
+
+      <div style="width:1px;height:40px;background:rgba(200,134,10,0.2);"></div>
+
+      <!-- Localização do visitante atual -->
+      <div style="text-align:center;">
+        <div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:rgba(200,134,10,0.5);text-transform:uppercase;margin-bottom:4px;">Você acessa de</div>
+        <div id="visitor-location" style="font-size:14px;color:var(--cream);font-family:'Crimson Pro',serif;">📍 Detectando...</div>
+      </div>
+
+      <div style="width:1px;height:40px;background:rgba(200,134,10,0.2);"></div>
+
+      <!-- Último acesso -->
+      <div style="text-align:center;">
+        <div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:rgba(200,134,10,0.5);text-transform:uppercase;margin-bottom:4px;">Seu acesso</div>
+        <div id="visit-time" style="font-size:13px;color:var(--cream);font-family:'Crimson Pro',serif;">⏱ —</div>
+      </div>
+
+    </div>
   </div>
+
+  <script>
+  (async function() {
+    // Contador de visitas via CountAPI
+    try {
+      var r = await fetch('https://api.countapi.xyz/hit/pachamamauemasul.com/pageviews');
+      var d = await r.json();
+      if (d && d.value) {
+        document.getElementById('visit-count').textContent = d.value.toLocaleString('pt-BR');
+      }
+    } catch(e) {
+      document.getElementById('visit-count').textContent = '—';
+    }
+
+    // Localização do visitante via ipapi
+    try {
+      var g = await fetch('https://ipapi.co/json/');
+      var geo = await g.json();
+      var loc = [geo.city, geo.region_code, geo.country_name].filter(Boolean).join(', ');
+      document.getElementById('visitor-location').textContent = '📍 ' + loc;
+    } catch(e) {
+      document.getElementById('visitor-location').textContent = '📍 Não disponível';
+    }
+
+    // Horário do acesso
+    var now = new Date();
+    var hora = now.toLocaleString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'});
+    document.getElementById('visit-time').textContent = '⏱ ' + hora;
+  })();
+  </script>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
