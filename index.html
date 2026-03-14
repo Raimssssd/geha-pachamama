@@ -98,7 +98,7 @@ section{position:relative;z-index:1;padding:88px 0;}
 .membros-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;}
 .membro-card{background:rgba(200,134,10,0.05);border:1px solid rgba(200,134,10,0.12);border-radius:6px;padding:24px 18px;text-align:center;transition:.3s;}
 .membro-card:hover{border-color:rgba(200,134,10,0.3);transform:translateY(-2px);}
-.membro-avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--rust),var(--dark3));border:2px solid rgba(200,134,10,0.3);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--gold);}
+.membro-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--rust),var(--dark3));border:2px solid rgba(200,134,10,0.3);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:20px;color:var(--gold);overflow:hidden;}.membro-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}.membro-lattes{display:inline-block;margin-top:10px;font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:var(--gold);opacity:.7;text-decoration:none;border:1px solid rgba(200,134,10,0.3);padding:3px 10px;border-radius:2px;transition:.2s;}.membro-lattes:hover{opacity:1;border-color:var(--gold);}
 .membro-nome{font-family:Cinzel,serif;font-size:12px;color:var(--cream);font-weight:600;letter-spacing:.3px;margin-bottom:4px;line-height:1.35;}
 .membro-role{font-size:12px;color:var(--gold);letter-spacing:1px;opacity:.7;margin-bottom:5px;}
 .membro-inst{font-size:11px;color:var(--text-dim);font-style:italic;}
@@ -328,13 +328,58 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
       <h2 class="sec-title">Membros do Grupo</h2>
       <div class="sec-rule"><div class="sr-line"></div><div class="sr-d"></div><div class="sr-line"></div></div>
     </div>
+    <!-- Subseção: Pesquisadores -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;margin-top:8px;">
+      <div style="flex:1;height:1px;background:rgba(200,134,10,0.25);"></div>
+      <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;white-space:nowrap;">Pesquisadores</div>
+      <div style="flex:1;height:1px;background:rgba(200,134,10,0.25);"></div>
+    </div>
     <div class="membros-grid">
-      <div class="membro-card"><div class="membro-avatar">R</div><div class="membro-nome">Prof. Dr. Raimundo Carvalho Moura Filho</div><div class="membro-role">Coordenador</div><div class="membro-inst">UEMASUL</div></div>
-      <div class="membro-card"><div class="membro-avatar">R</div><div class="membro-nome">Prof. Raimundo Lima dos Santos</div><div class="membro-role">Pesquisador</div><div class="membro-inst">UEMASUL</div></div>
-      <div class="membro-card"><div class="membro-avatar">R</div><div class="membro-nome">Prof.ª Regina Célia</div><div class="membro-role">Pesquisadora</div><div class="membro-inst">UEMASUL</div></div>
-      <div class="membro-card"><div class="membro-avatar">M</div><div class="membro-nome">Prof.ª Margarida Chaves</div><div class="membro-role">Pesquisadora</div><div class="membro-inst">UEMASUL</div></div>
-      <div class="membro-card"><div class="membro-avatar">F</div><div class="membro-nome">Prof.ª Fernanda Miler</div><div class="membro-role">Pesquisadora</div><div class="membro-inst">UEMASUL</div></div>
-      <div class="membro-card" style="border-style:dashed;opacity:.45;"><div class="membro-avatar" style="font-size:26px;">+</div><div class="membro-nome">[Adicionar membro]</div><div class="membro-role">Pesquisador / Estudante</div><div class="membro-inst">Edite conforme necessário</div></div>
+      <div class="membro-card">
+        <div class="membro-avatar"><img src="Foto%20Raimundo%20Carvalho%20.gif" alt="Raimundo Carvalho"></div>
+        <div class="membro-nome">Prof. Dr. Raimundo Carvalho Moura Filho</div>
+        <div class="membro-role">Coordenador</div>
+        <div class="membro-inst">UEMASUL</div>
+        <a class="membro-lattes" href="https://lattes.cnpq.br/0502143944711434" target="_blank" rel="noopener">📋 Currículo Lattes</a>
+      </div>
+      <div class="membro-card">
+        <div class="membro-avatar"><img src="Foto%20Raimundo%20Santos.jpg" alt="Raimundo Santos"></div>
+        <div class="membro-nome">Prof. Raimundo Lima dos Santos</div>
+        <div class="membro-role">Pesquisador</div>
+        <div class="membro-inst">UEMASUL</div>
+        <a class="membro-lattes" href="http://lattes.cnpq.br/1088922677592150" target="_blank" rel="noopener">📋 Currículo Lattes</a>
+      </div>
+      <div class="membro-card">
+        <div class="membro-avatar"><img src="Foto%20Regina.gif" alt="Regina Célia"></div>
+        <div class="membro-nome">Prof.ª Regina Célia</div>
+        <div class="membro-role">Pesquisadora</div>
+        <div class="membro-inst">UEMASUL</div>
+        <a class="membro-lattes" href="https://lattes.cnpq.br/1384692968984742" target="_blank" rel="noopener">📋 Currículo Lattes</a>
+      </div>
+      <div class="membro-card">
+        <div class="membro-avatar"><img src="Foto%20Margarida.gif" alt="Margarida Chaves"></div>
+        <div class="membro-nome">Prof.ª Margarida Chaves</div>
+        <div class="membro-role">Pesquisadora</div>
+        <div class="membro-inst">UEMASUL</div>
+        <a class="membro-lattes" href="https://lattes.cnpq.br/0494434302431623" target="_blank" rel="noopener">📋 Currículo Lattes</a>
+      </div>
+      <div class="membro-card">
+        <div class="membro-avatar">F</div>
+        <div class="membro-nome">Prof.ª Fernanda Miler Lima Pinto</div>
+        <div class="membro-role">Pesquisadora</div>
+        <div class="membro-inst">UNITINS</div>
+        <a class="membro-lattes" href="https://lattes.cnpq.br/1672312046277512" target="_blank" rel="noopener">📋 Currículo Lattes</a>
+      </div>
+    </div>
+
+    <!-- Subseção: Estudantes -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;margin-top:48px;">
+      <div style="flex:1;height:1px;background:rgba(200,134,10,0.25);"></div>
+      <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;white-space:nowrap;">Estudantes</div>
+      <div style="flex:1;height:1px;background:rgba(200,134,10,0.25);"></div>
+    </div>
+    <div class="membros-grid">
+      <div class="membro-card" style="border-style:dashed;opacity:.45;"><div class="membro-avatar" style="font-size:26px;">+</div><div class="membro-nome">[Adicionar estudante]</div><div class="membro-role">Estudante</div><div class="membro-inst">Edite conforme necessário</div></div>
     </div>
   </div>
 </section>
