@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>III Seminário Pachamama</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<style>
+  :root {
+    --gold: #c8860a;
+    --gold-light: #f5c842;
+    --gold-pale: #e8c88a;
+    --gold-dim: #8b5e1a;
+    --dark: #110600;
+    --dark2: #1e0a00;
+    --dark3: #2a0e00;
+    --cream: #f5e6c8;
+    --rust: #7a2800;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .cartaz {
+    width: 800px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Crimson Pro', serif;
+  }
+  .bg-geo {
+    position: absolute;
+    inset: 0;
+    opacity: 0.045;
+    background-image:
+      repeating-linear-gradient(0deg, var(--gold) 0, var(--gold) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 1px, transparent 1px, transparent 32px);
+  }
+
+  /* HEADER */
+  .header {
+    position: relative;
+    text-align: center;
+    background: linear-gradient(180deg, #3a0e00 0%, #1e0600 65%, var(--dark) 100%);
+  }
+  .zag {
+    width: 100%; height: 16px;
+    background: repeating-linear-gradient(90deg,
+      var(--gold) 0px, var(--gold) 10px,
+      var(--rust) 10px, var(--rust) 20px,
+      var(--gold) 20px, var(--gold) 30px,
+      var(--dark) 30px, var(--dark) 40px);
+  }
+  .zag.slim {
+    height: 8px;
+    background: repeating-linear-gradient(90deg,
+      var(--gold-dim) 0px, var(--gold-dim) 8px,
+      transparent 8px, transparent 16px);
+    opacity: 0.5;
+  }
+  .sol {
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,134,10,0.16) 0%, rgba(200,134,10,0.04) 50%, transparent 68%);
+    pointer-events: none;
+  }
+  .header-inner { padding: 28px 60px 24px; position: relative; }
+  .badge-edicao {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rust), var(--gold));
+    color: #fff8e6;
+    font-family: 'Cinzel', serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 4px; padding: 5px 20px;
+    border-radius: 2px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .evento-titulo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 48px; font-weight: 900;
+    color: var(--gold-light); line-height: 1.0;
+    letter-spacing: 3px;
+    text-shadow: 0 0 40px rgba(200,134,10,0.5), 0 2px 8px rgba(0,0,0,0.8);
+    margin-bottom: 8px;
+  }
+  .evento-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 11px; letter-spacing: 5px;
+    color: var(--gold); text-transform: uppercase; opacity: 0.8; margin-bottom: 14px;
+  }
+  .orn {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; margin: 8px 0 14px;
+  }
+  .orn-l { height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); width: 100px; opacity: 0.5; }
+  .orn-l.r { background: linear-gradient(90deg, var(--gold), transparent); }
+  .orn-d { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); opacity: 0.8; }
+  .orn-d.sm { width: 4px; height: 4px; opacity: 0.4; }
+  .tema-box {
+    background: rgba(200,134,10,0.08);
+    border: 1px solid rgba(200,134,10,0.2);
+    border-radius: 4px; padding: 10px 24px; margin: 0 20px;
+  }
+  .tema-label {
+    font-family: 'Cinzel', serif; font-size: 8px;
+    letter-spacing: 3px; color: var(--gold);
+    opacity: 0.6; margin-bottom: 4px; text-transform: uppercase;
+  }
+  .tema-texto {
+    font-style: italic; font-size: 13.5px;
+    color: var(--gold-pale); line-height: 1.5; font-weight: 300;
+  }
+
+  /* INFOBAR */
+  .infobar {
+    background: linear-gradient(90deg, var(--rust) 0%, #5c1a00 50%, var(--rust) 100%);
+    display: flex; align-items: stretch;
+    border-top: 1px solid rgba(200,134,10,0.3);
+    border-bottom: 1px solid rgba(200,134,10,0.3);
+  }
+  .info-cell {
+    flex: 1; padding: 12px 16px; text-align: center;
+    border-right: 1px solid rgba(200,134,10,0.2);
+    display: flex; flex-direction: column; gap: 3px; align-items: center;
+  }
+  .info-cell:last-child { border-right: none; }
+  .ic-lbl { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; color: var(--gold); opacity: 0.7; text-transform: uppercase; }
+  .ic-val { font-size: 14px; font-weight: 600; color: var(--cream); letter-spacing: 0.5px; }
+  .ic-val.gold { font-family: 'Cinzel Decorative', serif; font-size: 12px; color: var(--gold-light); }
+  .ic-val.online { color: #7eff9a; font-size: 12px; letter-spacing: 2px; font-family: 'Cinzel', serif; font-weight: 700; }
+
+  /* CORPO */
+  .body { padding: 28px 52px 0; position: relative; }
+  .sec-title {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+  }
+  .sec-line { height: 1px; background: rgba(200,134,10,0.3); flex: 1; }
+  .sec-text { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; color: var(--gold); opacity: 0.7; text-transform: uppercase; }
+
+  /* Separador de dia */
+  .dia-sep {
+    display: flex; align-items: center; gap: 14px;
+    margin: 20px 0 16px;
+  }
+  .dia-sep-l { height: 1px; background: rgba(200,134,10,0.2); flex: 1; }
+  .dia-sep-badge {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 3px;
+    color: var(--dark); background: var(--gold);
+    padding: 4px 14px; border-radius: 2px; text-transform: uppercase; white-space: nowrap;
+  }
+
+  /* BLOCO TIMELINE */
+  .bloco { display: flex; gap: 0; margin-bottom: 8px; }
+  .b-hora { min-width: 106px; padding: 10px 12px 10px 0; text-align: right; flex-shrink: 0; }
+  .h-val { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold); font-weight: 600; letter-spacing: 1px; }
+  .h-fim { font-size: 11px; color: rgba(200,134,10,0.5); font-weight: 300; }
+  .b-timeline {
+    width: 2px; flex-shrink: 0; margin: 0 16px;
+    background: linear-gradient(to bottom, rgba(200,134,10,0.45), rgba(200,134,10,0.08));
+    position: relative;
+  }
+  .b-dot {
+    position: absolute; top: 14px; left: 50%;
+    transform: translateX(-50%);
+    width: 10px; height: 10px;
+    background: var(--gold); border-radius: 50%;
+    border: 2px solid var(--dark);
+    box-shadow: 0 0 8px rgba(200,134,10,0.6);
+  }
+  .b-cont { flex: 1; padding: 10px 0 18px; }
+  .b-tag {
+    display: inline-block; font-family: 'Cinzel', serif;
+    font-size: 8px; letter-spacing: 2px;
+    padding: 2px 8px; border-radius: 2px;
+    text-transform: uppercase; margin-bottom: 5px; font-weight: 700;
+  }
+  .b-tag.cred { background: var(--gold); color: var(--dark); }
+  .b-tag.aber { background: #1a3a5c; color: #a0d0f0; }
+  .b-tag.pal  { background: #c84a0a; color: #fff; }
+  .b-tag.trab { background: #2a5c1a; color: #c8f0a0; }
+  .b-nome { font-family: 'Cinzel', serif; font-size: 13px; color: var(--cream); font-weight: 600; line-height: 1.4; margin-bottom: 3px; }
+  .b-desc { font-size: 12.5px; color: rgba(232,200,138,0.72); font-weight: 300; line-height: 1.5; font-style: italic; }
+
+  /* CAIXA PALESTRA */
+  .box-pal {
+    background: rgba(200,74,10,0.09);
+    border: 1px solid rgba(200,74,10,0.28);
+    border-left: 3px solid #c84a0a;
+    border-radius: 4px; padding: 12px 16px; margin-top: 7px;
+  }
+  .pal-tema {
+    font-family: 'Cinzel', serif; font-size: 11.5px;
+    color: #f5d0a0; font-weight: 700; letter-spacing: 0.3px; line-height: 1.45; margin-bottom: 9px;
+  }
+  .pal-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 3px; }
+  .pal-k { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 2px; color: var(--gold); opacity: 0.6; text-transform: uppercase; min-width: 68px; }
+  .pal-v { font-size: 13px; color: var(--cream); }
+  .pal-v.nome { font-weight: 600; color: var(--gold-pale); }
+  .pal-v.inst { font-size: 11px; color: rgba(232,200,138,0.55); font-style: italic; }
+
+  /* CAIXA TRABALHOS */
+  .box-trab {
+    background: rgba(42,92,26,0.1);
+    border: 1px solid rgba(100,180,60,0.2);
+    border-left: 3px solid #4a8c2a;
+    border-radius: 4px; padding: 12px 16px; margin-top: 7px;
+  }
+  .trab-t { font-family: 'Cinzel', serif; font-size: 11px; color: #c8f0a0; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 7px; line-height: 1.4; }
+  .trab-ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .trab-ul li { font-size: 12px; color: rgba(232,200,138,0.72); font-style: italic; display: flex; align-items: baseline; gap: 8px; font-weight: 300; }
+  .trab-ul li::before { content: '◆'; color: var(--gold); font-size: 6px; opacity: 0.6; flex-shrink: 0; }
+
+  /* RODAPÉ */
+  .footer { margin-top: 24px; padding: 16px 52px 0; border-top: 1px solid rgba(200,134,10,0.15); }
+  .footer-row1 { display: flex; justify-content: center; gap: 24px; align-items: center; margin-bottom: 14px; }
+  .fi { text-align: center; }
+  .fi-s { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold); font-weight: 700; letter-spacing: 2px; }
+  .fi-n { font-size: 10px; color: rgba(232,200,138,0.45); font-weight: 300; }
+  .fi-sep { width: 1px; height: 34px; background: rgba(200,134,10,0.2); }
+  .footer-aval { text-align: center; margin-bottom: 14px; }
+  .fa-lbl { font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 3px; color: var(--gold); opacity: 0.45; text-transform: uppercase; margin-bottom: 4px; }
+  .fa-nomes { font-size: 11px; color: rgba(232,200,138,0.55); font-weight: 300; line-height: 1.65; }
+
+  /* Decorações laterais */
+  .side { position: absolute; top: 50px; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+  .side.l { left: 16px; }
+  .side.r { right: 16px; }
+  .sd { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); opacity: 0.25; }
+  .sd.lg { width: 12px; height: 12px; opacity: 0.4; }
+  .sl { width: 1px; height: 22px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); opacity: 0.18; }
+</style>
+</head>
+<body>
+<div class="cartaz">
+  <div class="bg-geo"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="zag"></div>
+    <div class="sol"></div>
+    <div class="header-inner">
+      <div class="badge-edicao">III Edição · 2026</div>
+      <div class="evento-titulo">SEMINÁRIO<br>PACHAMAMA</div>
+      <div class="evento-sub">GEHA-Pachamama · UEMASUL</div>
+      <div class="orn">
+        <div class="orn-l"></div>
+        <div class="orn-d sm"></div><div class="orn-d"></div><div class="orn-d sm"></div>
+        <div class="orn-l r"></div>
+      </div>
+      <div class="tema-box">
+        <div class="tema-label">Tema</div>
+        <div class="tema-texto">Povos das Américas entre Passado e Presente:<br>Memória, Território e Desafios Contemporâneos</div>
+      </div>
+    </div>
+    <div class="zag slim"></div>
+  </div>
+
+  <!-- INFOBAR -->
+  <div class="infobar">
+    <div class="info-cell">
+      <div class="ic-lbl">Data</div>
+      <div class="ic-val gold">15 e 16 ABR 2026</div>
+    </div>
+    <div class="info-cell">
+      <div class="ic-lbl">Horário</div>
+      <div class="ic-val">18h30 – 22h30</div>
+    </div>
+    <div class="info-cell">
+      <div class="ic-lbl">Modalidade</div>
+      <div class="ic-val online">⬤ ONLINE</div>
+    </div>
+    <div class="info-cell">
+      <div class="ic-lbl">Local</div>
+      <div class="ic-val" style="font-size:12px;">UEMASUL · Imperatriz</div>
+    </div>
+    <div class="info-cell">
+      <div class="ic-lbl">Inscrição</div>
+      <div class="ic-val">Gratuita</div>
+    </div>
+    <div class="info-cell" style="align-items:center;">
+      <div class="ic-lbl">Acesse &amp; Inscreva-se</div>
+      <canvas id="qr-banner" style="display:block;border:3px solid #c8860a;border-radius:4px;background:#fff;margin-top:4px;"></canvas>
+      <div style="font-size:9px;color:#f5c842;margin-top:3px;letter-spacing:0.5px;font-family:'Cinzel',serif;">pachamamauemasul.com</div>
+    </div>
+  </div>
+
+  <!-- PROGRAMAÇÃO -->
+  <div class="body">
+    <div class="side l">
+      <div class="sl"></div><div class="sd"></div><div class="sd lg"></div><div class="sd"></div>
+      <div class="sl"></div><div class="sd"></div><div class="sd lg"></div><div class="sd"></div>
+      <div class="sl"></div><div class="sd"></div><div class="sd lg"></div>
+      <div class="sl"></div>
+    </div>
+    <div class="side r">
+      <div class="sl"></div><div class="sd"></div><div class="sd lg"></div><div class="sd"></div>
+      <div class="sl"></div><div class="sd"></div><div class="sd lg"></div><div class="sd"></div>
+      <div class="sl"></div><div class="sd"></div><div class="sd lg"></div>
+      <div class="sl"></div>
+    </div>
+
+    <div class="sec-title">
+      <div class="sec-line"></div>
+      <div class="sec-text">Programação</div>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- DIA 1 -->
+    <div class="dia-sep">
+      <div class="dia-sep-l"></div>
+      <div class="dia-sep-badge">15 de Abril · Quarta-feira</div>
+      <div class="dia-sep-l"></div>
+    </div>
+
+    <!-- Credenciamento -->
+    <div class="bloco">
+      <div class="b-hora"><div class="h-val">18h30</div><div class="h-fim">18h40</div></div>
+      <div class="b-timeline"><div class="b-dot"></div></div>
+      <div class="b-cont">
+        <div class="b-tag cred">Credenciamento</div>
+        <div class="b-nome">Recepção dos Participantes</div>
+        <div class="b-desc">Registro de presença e boas-vindas.</div>
+      </div>
+    </div>
+
+    <!-- Abertura -->
+    <div class="bloco">
+      <div class="b-hora"><div class="h-val">18h40</div><div class="h-fim">19h00</div></div>
+      <div class="b-timeline"><div class="b-dot"></div></div>
+      <div class="b-cont">
+        <div class="b-tag aber">Abertura</div>
+        <div class="b-nome">Abertura e Apresentação do Evento</div>
+        <div class="b-desc">Apresentação do III Seminário Pachamama, do GEHA-Pachamama e dos objetivos acadêmicos no contexto da disciplina História da América.</div>
+      </div>
+    </div>
+
+    <!-- Lançamento de livro -->
+    <div class="bloco">
+      <div class="b-hora"><div class="h-val">19h00</div><div class="h-fim">19h30</div></div>
+      <div class="b-timeline"><div class="b-dot"></div></div>
+      <div class="b-cont">
+        <div class="b-tag" style="background:#4a2a7a;color:#d4a0ff;">Lançamento</div>
+        <div class="b-nome">Lançamento de Livro</div>
+        <div class="b-desc">Lançamento de obra do GEHA-Pachamama.</div>
+      </div>
+    </div>
+
+    <!-- Palestra -->
+    <div class="bloco">
+      <div class="b-hora"><div class="h-val">19h30</div><div class="h-fim">20h30</div></div>
+      <div class="b-timeline"><div class="b-dot"></div></div>
+      <div class="b-cont">
+        <div class="b-tag pal">Palestra de Abertura</div>
+        <div class="box-pal">
+          <div class="pal-tema">O Bom Viver a partir dos povos indígenas:<br>olhares arguedianos senti-pensantes</div>
+          <div class="pal-row"><span class="pal-k">Convidada</span><span class="pal-v nome">Dra. Shyrley Tatiana Peña Aymara</span></div>
+          <div class="pal-row"><span class="pal-k"></span><span class="pal-v inst">PUC-Peru / Universidade Peruana de Ciencias Aplicadas (UPC)</span></div>
+          <div class="pal-row"><span class="pal-k">Mediador</span><span class="pal-v">Dr. Raimundo Carvalho Moura Filho (UEMASUL / UNITINS)</span></div>
+          <div class="pal-row"><span class="pal-k">Formato</span><span class="pal-v">Exposição + Debate</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIA 2 -->
+    <div class="dia-sep" style="margin-top:10px;">
+      <div class="dia-sep-l"></div>
+      <div class="dia-sep-badge">16 de Abril · Quinta-feira</div>
+      <div class="dia-sep-l"></div>
+    </div>
+
+    <!-- Trabalhos -->
+    <div class="bloco">
+      <div class="b-hora"><div class="h-val">09h00</div><div class="h-fim">11h30</div></div>
+      <div class="b-timeline"><div class="b-dot"></div></div>
+      <div class="b-cont">
+        <div class="b-tag trab">Apresentação de Trabalhos</div>
+        <div class="box-trab">
+          <div class="trab-t">Comunicações Acadêmicas dos Membros do GEHA-Pachamama</div>
+          <ul class="trab-ul">
+            <li>Pesquisas desenvolvidas pelos membros do grupo</li>
+            <li>Duração por apresentação: 15 a 20 minutos</li>
+            <li>Prazo de submissão: até 10 de abril de 2026</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- RODAPÉ -->
+  <div class="footer">
+    <div class="footer-row1">
+      <div class="fi"><div class="fi-s">UEMASUL</div><div class="fi-n">Universidade Estadual da Região<br>Tocantina do Maranhão</div></div>
+      <div class="fi-sep"></div>
+      <div class="fi"><div class="fi-s">UNITINS</div><div class="fi-n">Universidade Estadual<br>do Tocantins</div></div>
+      <div class="fi-sep"></div>
+      <div class="fi"><div class="fi-s">GEHA-Pachamama</div><div class="fi-n">Grupo de Estudos em<br>História das Américas</div></div>
+    </div>
+    <div class="footer-aval">
+      <div class="fa-lbl">Comissão Avaliadora</div>
+      <div class="fa-nomes">
+        Prof. Dr. Raimundo Carvalho Moura Filho (UEMASUL / UNITINS) &nbsp;·&nbsp; Prof.ª Regina Célia (UEMASUL)<br>
+        Prof.ª Margarida Chaves (UEMASUL) &nbsp;·&nbsp; Prof.ª Fernanda Miler (UNITINS)
+      </div>
+    </div>
+  </div>
+
+  <div class="zag" style="margin-top:0"></div>
+</div>
+<script>
+  new QRious({
+    element: document.getElementById('qr-banner'),
+    value: 'https://pachamamauemasul.com/#eventos',
+    size: 72,
+    background: '#ffffff',
+    foreground: '#1e0a00',
+    level: 'H'
+  });
+</script>
+</body>
+</html>
