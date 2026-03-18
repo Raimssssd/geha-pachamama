@@ -516,13 +516,59 @@ footer{background:var(--dark2);border-top:1px solid rgba(200,134,10,0.15);paddin
         <h3 class="sec-title" style="font-size:clamp(18px,2.5vw,28px);">Anais</h3>
         <div class="sec-rule"><div class="sr-line"></div><div class="sr-d"></div><div class="sr-line"></div></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
-        <div class="pub-card" style="padding:24px 22px;">
+      <!-- III Seminário — card expandido -->
+      <div class="pub-card" style="padding:28px 28px 32px;margin-bottom:18px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
           <div class="pub-tipo">Anais · 2026</div>
-          <div class="pub-titulo" style="font-size:15px;margin-bottom:8px;">III Seminário Pachamama</div>
-          <div class="pub-autores" style="font-style:normal;">Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos.</div>
-          <div style="margin-top:14px;font-size:12px;color:var(--text-dim);font-style:italic;">[Anais a serem publicados após o evento]</div>
+          <div style="font-family:Cinzel,serif;font-size:8px;letter-spacing:2px;color:var(--gold);background:rgba(200,134,10,0.12);border:1px solid rgba(200,134,10,0.3);padding:3px 10px;border-radius:2px;">EM ANDAMENTO</div>
         </div>
+        <div class="pub-titulo" style="font-size:16px;margin-bottom:6px;">III Seminário Pachamama</div>
+        <div class="pub-autores" style="font-style:normal;margin-bottom:22px;">Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos.</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+
+          <!-- Subseção 1: Download dos Anais -->
+          <div style="background:rgba(200,134,10,0.05);border:1px solid rgba(200,134,10,0.2);border-radius:4px;padding:20px;">
+            <div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">📥 Download dos Anais</div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:16px;">
+              Os anais serão disponibilizados em formato PDF após a realização do evento e revisão dos textos finais.
+            </div>
+            <div style="font-size:12px;color:rgba(200,134,10,0.5);font-style:italic;border-top:1px solid rgba(200,134,10,0.12);padding-top:12px;">
+              ⏳ Disponível após o evento · Previsão: maio de 2026
+            </div>
+          </div>
+
+          <!-- Subseção 2: Envio do Texto Final -->
+          <div style="background:rgba(200,134,10,0.05);border:1px solid rgba(200,134,10,0.2);border-radius:4px;padding:20px;">
+            <div style="font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">📤 Envio do Texto Final</div>
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:14px;">
+              Apresentadores devem enviar o texto final conforme o template oficial. Prazo: <strong style="color:var(--gold-pale);">30 de abril de 2026</strong>.
+            </div>
+            <div style="margin-bottom:14px;">
+              <a href="template-comunicacao-pachamama.docx" download class="btn btn-primary" style="font-size:9px;padding:8px 16px;display:inline-block;">📄 Baixar Template (.docx)</a>
+            </div>
+            <div id="anais-form-wrap">
+              <form name="envio-texto-final" data-netlify="true" netlify-honeypot="bot-field-anais" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:10px;" onsubmit="submitAnaisForm(event)">
+                <input type="hidden" name="form-name" value="envio-texto-final">
+                <input type="hidden" name="bot-field-anais" style="display:none;">
+                <input type="text" name="nome" placeholder="Nome completo *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:9px 12px;font-family:'Crimson Pro',serif;font-size:14px;outline:none;border-radius:2px;">
+                <input type="email" name="email" placeholder="E-mail *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:9px 12px;font-family:'Crimson Pro',serif;font-size:14px;outline:none;border-radius:2px;">
+                <input type="text" name="titulo" placeholder="Título do trabalho *" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--cream);padding:9px 12px;font-family:'Crimson Pro',serif;font-size:14px;outline:none;border-radius:2px;">
+                <div>
+                  <label style="font-size:11px;color:var(--text-dim);display:block;margin-bottom:4px;">Arquivo (.docx ou .pdf) *</label>
+                  <input type="file" name="arquivo" accept=".docx,.pdf" required style="background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.3);color:var(--text-dim);padding:8px 12px;font-size:12px;border-radius:2px;width:100%;cursor:pointer;">
+                </div>
+                <button type="submit" class="btn btn-primary" style="font-size:10px;padding:10px;margin-top:2px;">Enviar Texto Final</button>
+              </form>
+              <div id="sucAnais" style="display:none;color:#6fcf97;font-size:14px;text-align:center;padding:12px;border:1px solid rgba(111,207,151,0.3);border-radius:4px;margin-top:8px;">✓ Texto enviado com sucesso! Entraremos em contato em breve.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- II e I Seminários -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
         <div class="pub-card" style="padding:24px 22px;">
           <div class="pub-tipo">Anais · 2025</div>
           <div class="pub-titulo" style="font-size:15px;margin-bottom:8px;">II Seminário Pachamama</div>
@@ -1288,6 +1334,20 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
 })();
 
 // Tabs de inscrição
+function submitAnaisForm(e) {
+  e.preventDefault();
+  var form = e.target;
+  var data = new FormData(form);
+  fetch('/', { method: 'POST', body: data })
+    .then(function() {
+      form.style.display = 'none';
+      document.getElementById('sucAnais').style.display = 'block';
+    })
+    .catch(function() {
+      alert('Erro ao enviar. Tente novamente ou envie por e-mail para pachamama.americas@gmail.com');
+    });
+}
+
 function showTab(tab) {
   var isOuvinte = tab === 'ouvinte';
   document.getElementById('form-ouvinte').style.display = isOuvinte ? 'block' : 'none';
