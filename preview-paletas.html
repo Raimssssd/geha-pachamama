@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prévia de Paletas – GEHA-Pachamama</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#111; font-family:'Crimson Pro',serif; padding:40px 20px; }
+
+h1 { text-align:center; color:#fff; font-family:'Cinzel',serif; font-size:22px; letter-spacing:3px; margin-bottom:8px; }
+.intro { text-align:center; color:#aaa; font-size:15px; margin-bottom:48px; }
+
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; max-width:1200px; margin:0 auto; }
+
+.paleta { border-radius:8px; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,.6); }
+.paleta-label { text-align:center; color:#fff; font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; padding:14px; background:#222; text-transform:uppercase; }
+
+/* ── MINI-SITE SIMULADO ── */
+.ms { display:flex; flex-direction:column; }
+
+.ms-nav { display:flex; justify-content:center; gap:24px; padding:12px 20px; font-family:'Cinzel',serif; font-size:9px; letter-spacing:2px; }
+
+.ms-hero { padding:48px 32px 40px; text-align:center; position:relative; overflow:hidden; }
+.ms-hero-badge { display:inline-block; font-family:'Cinzel',serif; font-size:8px; letter-spacing:3px; padding:4px 16px; border-radius:2px; margin-bottom:14px; text-transform:uppercase; }
+.ms-hero-title { font-family:'Cinzel Decorative',serif; font-size:38px; font-weight:700; line-height:1; margin-bottom:8px; letter-spacing:2px; }
+.ms-hero-sub { font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; margin-bottom:14px; opacity:.7; }
+.ms-hero-desc { font-size:13px; max-width:360px; margin:0 auto 20px; line-height:1.6; opacity:.75; }
+.ms-hero-btn { display:inline-block; font-family:'Cinzel',serif; font-size:8px; letter-spacing:2px; padding:10px 24px; border-radius:2px; text-decoration:none; text-transform:uppercase; }
+.ms-rule { display:flex; align-items:center; justify-content:center; gap:8px; margin:16px 0 0; opacity:.4; }
+.ms-rule-line { height:1px; width:80px; }
+.ms-rule-d { width:6px; height:6px; transform:rotate(45deg); }
+
+.ms-section { padding:32px 28px; }
+.ms-kicker { font-family:'Cinzel',serif; font-size:7px; letter-spacing:3px; text-transform:uppercase; margin-bottom:6px; opacity:.6; }
+.ms-title { font-family:'Cinzel',serif; font-size:20px; font-weight:700; margin-bottom:16px; }
+
+.ms-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.ms-card { border-radius:3px; padding:16px; border:1px solid; }
+.ms-card-tipo { font-family:'Cinzel',serif; font-size:7px; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; opacity:.6; }
+.ms-card-title { font-size:13px; font-weight:600; margin-bottom:6px; }
+.ms-card-text { font-size:11px; opacity:.65; line-height:1.5; }
+
+.ms-infobar { display:flex; }
+.ms-ic { flex:1; padding:12px 8px; text-align:center; }
+.ms-ic-l { font-family:'Cinzel',serif; font-size:7px; letter-spacing:2px; text-transform:uppercase; opacity:.6; margin-bottom:4px; }
+.ms-ic-v { font-size:12px; font-weight:600; }
+
+.ms-footer { padding:16px 28px; display:flex; justify-content:center; gap:20px; font-family:'Cinzel',serif; font-size:8px; letter-spacing:1px; opacity:.5; border-top:1px solid; }
+
+/* PALETA 1 — Escuro + Dourado (ATUAL refinada) */
+.p1 .ms { background:#0e0400; color:#e8c88a; }
+.p1 .ms-nav { background:#1a0800; color:#c8860a; border-bottom:1px solid rgba(200,134,10,.2); }
+.p1 .ms-hero { background:linear-gradient(180deg,#3d0e00,#1e0600 60%,#0e0400); }
+.p1 .ms-hero-badge { background:linear-gradient(135deg,#7a2800,#c8860a); color:#fff8e6; }
+.p1 .ms-hero-title { color:#f5c842; text-shadow:0 0 40px rgba(200,134,10,.5); }
+.p1 .ms-hero-sub { color:#c8860a; }
+.p1 .ms-hero-desc { color:#e8c88a; }
+.p1 .ms-hero-btn { background:linear-gradient(135deg,#7a2800,#c8860a); color:#fff8e6; }
+.p1 .ms-rule-line { background:linear-gradient(90deg,transparent,#c8860a); }
+.p1 .ms-rule-d { background:#c8860a; }
+.p1 .ms-section { background:#0e0400; }
+.p1 .ms-kicker { color:#c8860a; }
+.p1 .ms-title { color:#f5c842; }
+.p1 .ms-cards { }
+.p1 .ms-card { background:rgba(200,134,10,.06); border-color:rgba(200,134,10,.2); }
+.p1 .ms-card-tipo { color:#c8860a; }
+.p1 .ms-card-title { color:#f5e6c8; }
+.p1 .ms-card-text { color:#c8860a; }
+.p1 .ms-infobar { background:linear-gradient(90deg,#7a2800,#5c1a00,#7a2800); border-top:1px solid rgba(200,134,10,.3); border-bottom:1px solid rgba(200,134,10,.3); }
+.p1 .ms-ic-l { color:#c8860a; }
+.p1 .ms-ic-v { color:#f5e6c8; }
+.p1 .ms-footer { color:#c8860a; border-color:rgba(200,134,10,.15); }
+.p1 .ms-nav a { color:#c8860a; text-decoration:none; }
+.p1 .paleta-label { border-top:3px solid #c8860a; }
+
+/* PALETA 2 — Escuro + Esmeralda */
+.p2 .ms { background:#060f09; color:#c8e6d4; }
+.p2 .ms-nav { background:#0a160e; color:#4ecb8d; border-bottom:1px solid rgba(78,203,141,.2); }
+.p2 .ms-hero { background:linear-gradient(180deg,#0d2e1a,#0a1a10 60%,#060f09); }
+.p2 .ms-hero-badge { background:linear-gradient(135deg,#1a3d2b,#4ecb8d); color:#f0fff6; }
+.p2 .ms-hero-title { color:#7fffca; text-shadow:0 0 40px rgba(78,203,141,.4); }
+.p2 .ms-hero-sub { color:#4ecb8d; }
+.p2 .ms-hero-desc { color:#c8e6d4; }
+.p2 .ms-hero-btn { background:linear-gradient(135deg,#1a3d2b,#4ecb8d); color:#f0fff6; }
+.p2 .ms-rule-line { background:linear-gradient(90deg,transparent,#4ecb8d); }
+.p2 .ms-rule-d { background:#4ecb8d; }
+.p2 .ms-section { background:#060f09; }
+.p2 .ms-kicker { color:#4ecb8d; }
+.p2 .ms-title { color:#7fffca; }
+.p2 .ms-card { background:rgba(78,203,141,.06); border-color:rgba(78,203,141,.2); }
+.p2 .ms-card-tipo { color:#4ecb8d; }
+.p2 .ms-card-title { color:#e0f5ea; }
+.p2 .ms-card-text { color:#4ecb8d; }
+.p2 .ms-infobar { background:linear-gradient(90deg,#0d2e1a,#0a1f14,#0d2e1a); border-top:1px solid rgba(78,203,141,.3); border-bottom:1px solid rgba(78,203,141,.3); }
+.p2 .ms-ic-l { color:#4ecb8d; }
+.p2 .ms-ic-v { color:#e0f5ea; }
+.p2 .ms-footer { color:#4ecb8d; border-color:rgba(78,203,141,.15); }
+.p2 .ms-nav a { color:#4ecb8d; text-decoration:none; }
+.p2 .paleta-label { border-top:3px solid #4ecb8d; }
+
+/* PALETA 3 — Claro + Terracota */
+.p3 .ms { background:#fdf6ed; color:#3d1a0a; }
+.p3 .ms-nav { background:#fff8f0; color:#c0440a; border-bottom:1px solid rgba(192,68,10,.15); }
+.p3 .ms-hero { background:linear-gradient(180deg,#f5e0cc,#fdf0e4 60%,#fdf6ed); }
+.p3 .ms-hero-badge { background:linear-gradient(135deg,#6b3a1f,#c0440a); color:#fff8f0; }
+.p3 .ms-hero-title { color:#7a2800; }
+.p3 .ms-hero-sub { color:#c0440a; }
+.p3 .ms-hero-desc { color:#5c2a10; }
+.p3 .ms-hero-btn { background:linear-gradient(135deg,#7a2800,#c0440a); color:#fff8f0; }
+.p3 .ms-rule-line { background:linear-gradient(90deg,transparent,#c0440a); }
+.p3 .ms-rule-d { background:#c0440a; }
+.p3 .ms-section { background:#fdf6ed; }
+.p3 .ms-kicker { color:#c0440a; }
+.p3 .ms-title { color:#7a2800; }
+.p3 .ms-card { background:rgba(192,68,10,.06); border-color:rgba(192,68,10,.2); }
+.p3 .ms-card-tipo { color:#c0440a; }
+.p3 .ms-card-title { color:#3d1a0a; }
+.p3 .ms-card-text { color:#7a4a30; }
+.p3 .ms-infobar { background:linear-gradient(90deg,#f5e0cc,#fce8d8,#f5e0cc); border-top:1px solid rgba(192,68,10,.3); border-bottom:1px solid rgba(192,68,10,.3); }
+.p3 .ms-ic-l { color:#c0440a; }
+.p3 .ms-ic-v { color:#3d1a0a; }
+.p3 .ms-footer { color:#c0440a; border-color:rgba(192,68,10,.2); background:#fff8f0; }
+.p3 .ms-nav a { color:#7a2800; text-decoration:none; }
+.p3 .paleta-label { border-top:3px solid #c0440a; }
+
+/* PALETA 4 — Escuro + Índigo */
+.p4 .ms { background:#080b18; color:#c8d0f0; }
+.p4 .ms-nav { background:#0d1126; color:#7b9cff; border-bottom:1px solid rgba(123,156,255,.2); }
+.p4 .ms-hero { background:linear-gradient(180deg,#1a2050,#0d1530 60%,#080b18); }
+.p4 .ms-hero-badge { background:linear-gradient(135deg,#2d3a8c,#7b9cff); color:#f0f4ff; }
+.p4 .ms-hero-title { color:#b8ccff; text-shadow:0 0 40px rgba(123,156,255,.4); }
+.p4 .ms-hero-sub { color:#7b9cff; }
+.p4 .ms-hero-desc { color:#c8d0f0; }
+.p4 .ms-hero-btn { background:linear-gradient(135deg,#2d3a8c,#7b9cff); color:#f0f4ff; }
+.p4 .ms-rule-line { background:linear-gradient(90deg,transparent,#7b9cff); }
+.p4 .ms-rule-d { background:#7b9cff; }
+.p4 .ms-section { background:#080b18; }
+.p4 .ms-kicker { color:#7b9cff; }
+.p4 .ms-title { color:#b8ccff; }
+.p4 .ms-card { background:rgba(123,156,255,.06); border-color:rgba(123,156,255,.2); }
+.p4 .ms-card-tipo { color:#7b9cff; }
+.p4 .ms-card-title { color:#e8eeff; }
+.p4 .ms-card-text { color:#7b9cff; }
+.p4 .ms-infobar { background:linear-gradient(90deg,#1a2050,#0d1a40,#1a2050); border-top:1px solid rgba(123,156,255,.3); border-bottom:1px solid rgba(123,156,255,.3); }
+.p4 .ms-ic-l { color:#7b9cff; }
+.p4 .ms-ic-v { color:#e8eeff; }
+.p4 .ms-footer { color:#7b9cff; border-color:rgba(123,156,255,.15); }
+.p4 .ms-nav a { color:#7b9cff; text-decoration:none; }
+.p4 .paleta-label { border-top:3px solid #7b9cff; }
+
+.current-tag { display:inline-block; background:#c8860a; color:#000; font-size:10px; padding:2px 8px; border-radius:10px; margin-left:8px; vertical-align:middle; font-family:sans-serif; }
+</style>
+</head>
+<body>
+
+<h1>PRÉVIA DE PALETAS DE CORES</h1>
+<p class="intro">Simulação de como cada paleta ficaria aplicada ao site — hero, navegação, cards e infobar</p>
+
+<div class="grid">
+
+  <!-- PALETA 1 -->
+  <div class="paleta p1">
+    <div class="paleta-label">Opção 1 — Escuro + Dourado <span class="current-tag">ATUAL</span></div>
+    <div class="ms">
+      <nav class="ms-nav">
+        <a href="#">Sobre</a><a href="#">Membros</a><a href="#">Eventos</a><a href="#">Publicações</a><a href="#">Contato</a>
+      </nav>
+      <div class="ms-hero">
+        <div class="ms-hero-badge">UEMASUL</div>
+        <div class="ms-hero-title">GEHA<br>PACHAMAMA</div>
+        <div class="ms-hero-sub">Grupo de Estudos em História das Américas</div>
+        <div class="ms-hero-desc">Pesquisa, ensino e extensão sobre os povos das Américas — suas memórias, territórios e lutas.</div>
+        <a class="ms-hero-btn" href="#">Conheça o Grupo</a>
+        <div class="ms-rule"><div class="ms-rule-line"></div><div class="ms-rule-d"></div><div class="ms-rule-line" style="background:linear-gradient(90deg,#c8860a,transparent)"></div></div>
+      </div>
+      <div class="ms-infobar">
+        <div class="ms-ic"><div class="ms-ic-l">Evento</div><div class="ms-ic-v">III Seminário</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Data</div><div class="ms-ic-v">15 e 16 ABR</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Inscrição</div><div class="ms-ic-v">Gratuita</div></div>
+      </div>
+      <div class="ms-section">
+        <div class="ms-kicker">Produção Acadêmica</div>
+        <div class="ms-title">Publicações</div>
+        <div class="ms-cards">
+          <div class="ms-card"><div class="ms-card-tipo">E-book · 2026</div><div class="ms-card-title">Memória, Patrimônio e Formação Cidadã</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1926-8</div></div>
+          <div class="ms-card"><div class="ms-card-tipo">Parceria · GLEHE</div><div class="ms-card-title">Pedagogias Críticas e Intervenções Pedagógicas</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1923-7</div></div>
+        </div>
+      </div>
+      <div class="ms-footer">UEMASUL &nbsp;·&nbsp; UNITINS &nbsp;·&nbsp; GEHA-Pachamama</div>
+    </div>
+  </div>
+
+  <!-- PALETA 2 -->
+  <div class="paleta p2">
+    <div class="paleta-label">Opção 2 — Escuro + Esmeralda</div>
+    <div class="ms">
+      <nav class="ms-nav">
+        <a href="#">Sobre</a><a href="#">Membros</a><a href="#">Eventos</a><a href="#">Publicações</a><a href="#">Contato</a>
+      </nav>
+      <div class="ms-hero">
+        <div class="ms-hero-badge">UEMASUL</div>
+        <div class="ms-hero-title">GEHA<br>PACHAMAMA</div>
+        <div class="ms-hero-sub">Grupo de Estudos em História das Américas</div>
+        <div class="ms-hero-desc">Pesquisa, ensino e extensão sobre os povos das Américas — suas memórias, territórios e lutas.</div>
+        <a class="ms-hero-btn" href="#">Conheça o Grupo</a>
+        <div class="ms-rule"><div class="ms-rule-line"></div><div class="ms-rule-d"></div><div class="ms-rule-line" style="background:linear-gradient(90deg,#4ecb8d,transparent)"></div></div>
+      </div>
+      <div class="ms-infobar">
+        <div class="ms-ic"><div class="ms-ic-l">Evento</div><div class="ms-ic-v">III Seminário</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Data</div><div class="ms-ic-v">15 e 16 ABR</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Inscrição</div><div class="ms-ic-v">Gratuita</div></div>
+      </div>
+      <div class="ms-section">
+        <div class="ms-kicker">Produção Acadêmica</div>
+        <div class="ms-title">Publicações</div>
+        <div class="ms-cards">
+          <div class="ms-card"><div class="ms-card-tipo">E-book · 2026</div><div class="ms-card-title">Memória, Patrimônio e Formação Cidadã</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1926-8</div></div>
+          <div class="ms-card"><div class="ms-card-tipo">Parceria · GLEHE</div><div class="ms-card-title">Pedagogias Críticas e Intervenções Pedagógicas</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1923-7</div></div>
+        </div>
+      </div>
+      <div class="ms-footer">UEMASUL &nbsp;·&nbsp; UNITINS &nbsp;·&nbsp; GEHA-Pachamama</div>
+    </div>
+  </div>
+
+  <!-- PALETA 3 -->
+  <div class="paleta p3">
+    <div class="paleta-label">Opção 3 — Claro + Terracota</div>
+    <div class="ms">
+      <nav class="ms-nav">
+        <a href="#">Sobre</a><a href="#">Membros</a><a href="#">Eventos</a><a href="#">Publicações</a><a href="#">Contato</a>
+      </nav>
+      <div class="ms-hero">
+        <div class="ms-hero-badge">UEMASUL</div>
+        <div class="ms-hero-title">GEHA<br>PACHAMAMA</div>
+        <div class="ms-hero-sub">Grupo de Estudos em História das Américas</div>
+        <div class="ms-hero-desc">Pesquisa, ensino e extensão sobre os povos das Américas — suas memórias, territórios e lutas.</div>
+        <a class="ms-hero-btn" href="#">Conheça o Grupo</a>
+        <div class="ms-rule"><div class="ms-rule-line"></div><div class="ms-rule-d"></div><div class="ms-rule-line" style="background:linear-gradient(90deg,#c0440a,transparent)"></div></div>
+      </div>
+      <div class="ms-infobar">
+        <div class="ms-ic"><div class="ms-ic-l">Evento</div><div class="ms-ic-v">III Seminário</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Data</div><div class="ms-ic-v">15 e 16 ABR</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Inscrição</div><div class="ms-ic-v">Gratuita</div></div>
+      </div>
+      <div class="ms-section">
+        <div class="ms-kicker">Produção Acadêmica</div>
+        <div class="ms-title">Publicações</div>
+        <div class="ms-cards">
+          <div class="ms-card"><div class="ms-card-tipo">E-book · 2026</div><div class="ms-card-title">Memória, Patrimônio e Formação Cidadã</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1926-8</div></div>
+          <div class="ms-card"><div class="ms-card-tipo">Parceria · GLEHE</div><div class="ms-card-title">Pedagogias Críticas e Intervenções Pedagógicas</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1923-7</div></div>
+        </div>
+      </div>
+      <div class="ms-footer">UEMASUL &nbsp;·&nbsp; UNITINS &nbsp;·&nbsp; GEHA-Pachamama</div>
+    </div>
+  </div>
+
+  <!-- PALETA 4 -->
+  <div class="paleta p4">
+    <div class="paleta-label">Opção 4 — Escuro + Índigo</div>
+    <div class="ms">
+      <nav class="ms-nav">
+        <a href="#">Sobre</a><a href="#">Membros</a><a href="#">Eventos</a><a href="#">Publicações</a><a href="#">Contato</a>
+      </nav>
+      <div class="ms-hero">
+        <div class="ms-hero-badge">UEMASUL</div>
+        <div class="ms-hero-title">GEHA<br>PACHAMAMA</div>
+        <div class="ms-hero-sub">Grupo de Estudos em História das Américas</div>
+        <div class="ms-hero-desc">Pesquisa, ensino e extensão sobre os povos das Américas — suas memórias, territórios e lutas.</div>
+        <a class="ms-hero-btn" href="#">Conheça o Grupo</a>
+        <div class="ms-rule"><div class="ms-rule-line"></div><div class="ms-rule-d"></div><div class="ms-rule-line" style="background:linear-gradient(90deg,#7b9cff,transparent)"></div></div>
+      </div>
+      <div class="ms-infobar">
+        <div class="ms-ic"><div class="ms-ic-l">Evento</div><div class="ms-ic-v">III Seminário</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Data</div><div class="ms-ic-v">15 e 16 ABR</div></div>
+        <div class="ms-ic"><div class="ms-ic-l">Inscrição</div><div class="ms-ic-v">Gratuita</div></div>
+      </div>
+      <div class="ms-section">
+        <div class="ms-kicker">Produção Acadêmica</div>
+        <div class="ms-title">Publicações</div>
+        <div class="ms-cards">
+          <div class="ms-card"><div class="ms-card-tipo">E-book · 2026</div><div class="ms-card-title">Memória, Patrimônio e Formação Cidadã</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1926-8</div></div>
+          <div class="ms-card"><div class="ms-card-tipo">Parceria · GLEHE</div><div class="ms-card-title">Pedagogias Críticas e Intervenções Pedagógicas</div><div class="ms-card-text">VirtualBooks · ISBN 978-85-434-1923-7</div></div>
+        </div>
+      </div>
+      <div class="ms-footer">UEMASUL &nbsp;·&nbsp; UNITINS &nbsp;·&nbsp; GEHA-Pachamama</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="text-align:center;color:#666;font-size:13px;margin-top:40px;font-family:sans-serif;">
+  Abra este arquivo no navegador para ver as opções. Escolha uma e aplicamos ao site completo.
+</p>
+
+</body>
+</html>
