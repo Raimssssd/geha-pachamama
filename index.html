@@ -687,16 +687,20 @@ section{animation:fadeUp .6s ease-out;}
             <input type="hidden" name="form-name" value="apresentador">
             <p style="display:none;"><label>Não preencha isto:<input name="bot-field" /></label></p>
             
+            <div style="margin-bottom:16px;">
+              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Título da Comunicação</label>
+              <input type="text" name="titulo" placeholder="Digite o título" required class="fi">
+            </div>
+
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-              <input type="text" name="nome" placeholder="Nome completo" required class="fi">
-              <input type="email" name="email" placeholder="E-mail" required class="fi">
-              <input type="tel" name="telefone" placeholder="Telefone" class="fi">
+              <input type="text" name="autor" placeholder="Autor (nome completo)" required class="fi" style="grid-column:1/-1;">
+              <input type="email" name="email" placeholder="E-mail do autor" required class="fi">
               <input type="text" name="instituicao" placeholder="Instituição" class="fi">
             </div>
 
             <div style="margin-bottom:16px;">
-              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Título da Comunicação</label>
-              <input type="text" name="titulo" placeholder="Digite o título" required class="fi">
+              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Orientador(a) <span style="opacity:0.6;font-size:9px;">(se houver)</span></label>
+              <input type="text" name="orientador" placeholder="Nome do orientador(a)" class="fi">
             </div>
 
             <div style="margin-bottom:16px;">
