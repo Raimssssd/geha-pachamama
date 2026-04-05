@@ -1197,14 +1197,19 @@ function showCertTab(tab) {
 }
 
 // --- INSCRIÇÕES TABS ---
-function showTab(tab) {
-  var isOuvinte = tab === 'ouvinte';
-  document.getElementById('form-ouvinte').style.display = isOuvinte ? 'block' : 'none';
-  document.getElementById('form-comunicado').style.display = isOuvinte ? 'none' : 'block';
-  document.getElementById('tab-ouvinte').style.background = isOuvinte ? 'var(--gold)' : 'rgba(200,134,10,0.15)';
-  document.getElementById('tab-ouvinte').style.color = isOuvinte ? '#0d0500' : 'var(--gold)';
-  document.getElementById('tab-comunicado').style.background = isOuvinte ? 'rgba(200,134,10,0.15)' : 'var(--gold)';
-  document.getElementById('tab-comunicado').style.color = isOuvinte ? 'var(--gold)' : '#0d0500';
+function showTab(tabId) {
+  document.querySelectorAll('.tab-panel').forEach(function(p) {
+    p.style.display = 'none';
+    p.classList.remove('active');
+  });
+  var panel = document.getElementById(tabId);
+  if (panel) { panel.style.display = 'block'; panel.classList.add('active'); }
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    var isActive = b.getAttribute('onclick') && b.getAttribute('onclick').indexOf("'" + tabId + "'") !== -1;
+    b.style.background = isActive ? 'var(--gold)' : 'rgba(200,134,10,0.15)';
+    b.style.color = isActive ? '#0d0800' : 'var(--gold)';
+    if (isActive) b.classList.add('active'); else b.classList.remove('active');
+  });
 }
 
 // --- ACERVO TABS ---
