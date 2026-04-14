@@ -193,6 +193,14 @@ section{padding:72px 0;}
 .card-title{font-size:16px;font-weight:600;color:var(--creme);margin-bottom:8px;line-height:1.4;}
 .card-text{font-size:13px;color:var(--dim);line-height:1.6;}
 
+/* ══ EVENTOS ACORDEÃO ══ */
+.ev-card{background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.18);border-radius:4px;overflow:hidden;transition:border-color .2s;}
+.ev-card:hover{border-color:rgba(200,134,10,0.4);}
+.ev-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;cursor:pointer;user-select:none;}
+.ev-header:hover .ev-chevron{color:var(--terra-l);}
+.ev-chevron{transition:transform .3s;}
+.ev-chevron.open{transform:rotate(180deg);}
+
 /* ══ MEMBROS ══ */
 .membros-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;}
 .membro{text-align:center;padding:24px 16px;background:rgba(200,134,10,.04);border:1px solid rgba(200,134,10,.12);border-radius:4px;}
@@ -646,49 +654,68 @@ section{animation:fadeUp .6s ease-out;}
     <h2 class="sec-title">Eventos</h2>
     <div class="sec-rule"><div class="sr-line"></div><div class="sr-d" style="background:var(--terra);"></div><div class="sr-text"></div></div>
     
-    <!-- Eventos Lista -->
-    <div style="margin-bottom:40px;">
+    <!-- Eventos Acordeão -->
+    <div style="margin-bottom:40px;display:flex;flex-direction:column;gap:12px;">
 
-      <!-- DIA 1 -->
-      <div class="evento" style="margin-bottom:24px;">
-        <div class="evento-data">
-          <div class="ed-dia">15</div>
-          <div class="ed-mes">ABR</div>
-          <div class="ed-ano">2026</div>
+      <!-- CARD DIA 1 -->
+      <div class="ev-card" id="ev-card-1">
+        <div class="ev-header" onclick="toggleEvento('ev-1')">
+          <div style="display:flex;align-items:center;gap:20px;">
+            <div style="text-align:center;min-width:52px;">
+              <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);line-height:1;">15</div>
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--terra-l);text-transform:uppercase;">Abr 2026</div>
+            </div>
+            <div style="border-left:1px solid rgba(200,134,10,0.3);padding-left:20px;flex:1;">
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--verde-l);text-transform:uppercase;margin-bottom:4px;">Online · 18h30–21h30</div>
+              <div style="font-family:'Cinzel',serif;font-size:16px;color:var(--creme);">III Seminário Pachamama — Dia 1</div>
+              <div style="font-size:13px;color:var(--dim);margin-top:4px);">Abertura · Lançamento de Livro · Palestra Internacional</div>
+            </div>
+          </div>
+          <div class="ev-chevron" id="chev-ev-1" style="color:var(--gold);font-size:18px;transition:transform .3s;">▼</div>
         </div>
-        <div class="evento-corpo">
-          <div class="evento-badge">Online</div>
-          <div class="evento-titulo">III Seminário Pachamama — Dia 1</div>
-          <div class="evento-desc">
-            <strong style="color:var(--gold-l);">Tema:</strong> Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos.
-            <br><br>
-            <strong style="color:var(--terra-l);">Horário:</strong> 18h30 às 21h30 · UEMASUL – Campus Imperatriz (modalidade online)
-            <br><br>
-            <strong style="color:var(--terra-l);">Programação:</strong><br>
-            &bull; Lançamento de livro<br>
-            &bull; Palestra de abertura — <strong style="color:var(--creme);">Dra. Shyrley Tatiana Peña Aymara</strong> (PUC-P / UPC · Peru)
-            <br><br>
-            <a href="https://meet.google.com/agw-wakw-mkv" target="_blank" style="display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;padding:8px 16px;background:var(--verde);color:#fff;border-radius:2px;text-decoration:none;">📹 Acessar Transmissão</a>
+        <div class="ev-body" id="ev-1" style="display:none;">
+          <div style="padding:24px 28px;border-top:1px solid rgba(200,134,10,0.15);">
+            <p style="margin-bottom:14px;color:var(--dim);font-size:14px;line-height:1.8;">
+              <strong style="color:var(--gold-l);">Tema:</strong> Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos.<br>
+              <strong style="color:var(--terra-l);">Local:</strong> UEMASUL – Campus Imperatriz (modalidade online)
+            </p>
+            <div style="margin-bottom:18px;">
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--terra-l);text-transform:uppercase;margin-bottom:10px;">Programação</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:rgba(200,134,10,0.05);border-left:3px solid var(--gold);border-radius:2px;">
+                  <span style="color:var(--gold);font-size:13px;margin-top:1px;">📖</span>
+                  <span style="color:var(--creme);font-size:14px;">Lançamento de livro</span>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:rgba(200,134,10,0.05);border-left:3px solid var(--terra);border-radius:2px;">
+                  <span style="color:var(--gold);font-size:13px;margin-top:1px;">🎤</span>
+                  <span style="color:var(--creme);font-size:14px;">Palestra de abertura — <strong>Dra. Shyrley Tatiana Peña Aymara</strong> <span style="color:var(--dim);font-size:13px;">(PUC-P / UPC · Peru)</span></span>
+                </div>
+              </div>
+            </div>
+            <a href="https://meet.google.com/agw-wakw-mkv" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;padding:9px 18px;background:var(--verde);color:#fff;border-radius:2px;text-decoration:none;">📹 Acessar Transmissão</a>
           </div>
         </div>
       </div>
 
-      <!-- DIA 2 -->
-      <div class="evento">
-        <div class="evento-data">
-          <div class="ed-dia">16</div>
-          <div class="ed-mes">ABR</div>
-          <div class="ed-ano">2026</div>
+      <!-- CARD DIA 2 -->
+      <div class="ev-card" id="ev-card-2">
+        <div class="ev-header" onclick="toggleEvento('ev-2')">
+          <div style="display:flex;align-items:center;gap:20px;">
+            <div style="text-align:center;min-width:52px;">
+              <div style="font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold);line-height:1;">16</div>
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--terra-l);text-transform:uppercase;">Abr 2026</div>
+            </div>
+            <div style="border-left:1px solid rgba(200,134,10,0.3);padding-left:20px;flex:1;">
+              <div style="font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--verde-l);text-transform:uppercase;margin-bottom:4px;">Online · 08h00–09h50</div>
+              <div style="font-family:'Cinzel',serif;font-size:16px;color:var(--creme);">III Seminário Pachamama — Dia 2</div>
+              <div style="font-size:13px;color:var(--dim);margin-top:4px;">Apresentação de Comunicações · 11 trabalhos · Comentários da Banca</div>
+            </div>
+          </div>
+          <div class="ev-chevron" id="chev-ev-2" style="color:var(--gold);font-size:18px;transition:transform .3s;">▼</div>
         </div>
-        <div class="evento-corpo">
-          <div class="evento-badge">Online</div>
-          <div class="evento-titulo">III Seminário Pachamama — Dia 2</div>
-          <div class="evento-desc">
-            <strong style="color:var(--terra-l);">Apresentação das comunicações dos membros do GEHA-Pachamama</strong><br>
-            <span style="font-size:13px;color:var(--dim);">Duração: 10 minutos por apresentação</span>
-            <br><br>
-
-            <!-- Tabela de apresentações -->
+        <div class="ev-body" id="ev-2" style="display:none;">
+          <div style="padding:24px 28px;border-top:1px solid rgba(200,134,10,0.15);">
+            <p style="margin-bottom:18px;color:var(--dim);font-size:14px;">Apresentação das comunicações dos membros do GEHA-Pachamama · <em>10 minutos por apresentação</em></p>
             <div style="overflow-x:auto;margin-bottom:20px;">
               <table style="width:100%;border-collapse:collapse;font-size:13px;">
                 <thead>
@@ -700,82 +727,22 @@ section{animation:fadeUp .6s ease-out;}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">1</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">08:00 – 08:10</td>
-                    <td style="padding:10px;color:var(--creme);">Geovani Costa da Silva Júnior</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Natureza, Memória e Crítica Social em Los Ríos Profundos (1958): Cosmovisão Indígena e Modernidade Capitalista na Literatura Andina do Século XX</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">2</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">08:10 – 08:20</td>
-                    <td style="padding:10px;color:var(--creme);">Juarez Gabriel Trindade Carvalho</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Guerras Justas: Indígenas como Inimigos da Fé Católica na América Amazônica e as Resistências Indígenas (Século XVII)</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">3</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">08:20 – 08:30</td>
-                    <td style="padding:10px;color:var(--creme);">Igor Andrade da Silva</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Uma Análise Historiográfica na Obra de João Renôr Ferreira de Carvalho</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">4</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">08:30 – 08:40</td>
-                    <td style="padding:10px;color:var(--creme);">Rafael Guedes Silva Sena</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Terricídio, Memória e Resistência em El Tren del Olvido de Moira Millán</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">5</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">08:40 – 08:50</td>
-                    <td style="padding:10px;color:var(--creme);">Nycole de Sousa Carneiro</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Capitalismo Destrutivo e Cosmopolítica Yanomami: A Crítica de Davi Kopenawa e suas Contribuições para a Educação Descolonizadora</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">6</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">08:50 – 09:00</td>
-                    <td style="padding:10px;color:var(--creme);">Gabrielle Teixeira Jardim</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Aviso de Incêndio: Controle Reprodutivo e Autoritarismo em O Conto da Aia e na PEC 164/2012</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">7</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">09:00 – 09:10</td>
-                    <td style="padding:10px;color:var(--creme);">Washinton Marcone Silva Cirqueira</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">A Colonialidade da Natureza e o Desmonte Socioambiental na Amazônia (2019–2022)</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">8</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">09:10 – 09:20</td>
-                    <td style="padding:10px;color:var(--creme);">Washinton Marcone Silva Cirqueira</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Entre Ruas e Leis: A PLURI e a Disputa Popular pela Lei Orgânica de Imperatriz (MA), 1980–1990</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">9</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">09:20 – 09:30</td>
-                    <td style="padding:10px;color:var(--creme);">Iasmin Sousa Silva</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Entre a Norma e a Realidade: A Efetividade da Consulta Prévia na Bolívia</td>
-                  </tr>
-                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">10</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">09:30 – 09:40</td>
-                    <td style="padding:10px;color:var(--creme);">Iracy Mirelly de Melo Brito</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Humanidade e Natureza: Uma Análise da Obra Ideias para Adiar o Fim do Mundo, de Ailton Krenak</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">11</td>
-                    <td style="padding:10px;color:var(--dim);white-space:nowrap;">09:40 – 09:50</td>
-                    <td style="padding:10px;color:var(--creme);">João Carlos Ferreira de Sousa</td>
-                    <td style="padding:10px;color:var(--dim);font-style:italic;">Natureza e Bem Viver em Ailton Krenak: Uma Ontologia de Interdependência como Resistência ao Utilitarismo Moderno</td>
-                  </tr>
-                  <tr style="background:rgba(200,134,10,0.08);border-top:2px solid rgba(200,134,10,0.3);">
-                    <td style="padding:10px;text-align:center;color:var(--gold);">—</td>
-                    <td style="padding:10px;color:var(--gold);white-space:nowrap;font-family:'Cinzel',serif;font-size:11px;">A partir de 09:50</td>
-                    <td colspan="2" style="padding:10px;color:var(--creme);font-weight:bold;">🎓 Comentários da Banca sobre os trabalhos apresentados</td>
-                  </tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">1</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">08:00 – 08:10</td><td style="padding:10px;color:var(--creme);">Geovani Costa da Silva Júnior</td><td style="padding:10px;color:var(--dim);font-style:italic;">Natureza, Memória e Crítica Social em Los Ríos Profundos (1958): Cosmovisão Indígena e Modernidade Capitalista na Literatura Andina do Século XX</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">2</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">08:10 – 08:20</td><td style="padding:10px;color:var(--creme);">Juarez Gabriel Trindade Carvalho</td><td style="padding:10px;color:var(--dim);font-style:italic;">Guerras Justas: Indígenas como Inimigos da Fé Católica na América Amazônica e as Resistências Indígenas (Século XVII)</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">3</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">08:20 – 08:30</td><td style="padding:10px;color:var(--creme);">Igor Andrade da Silva</td><td style="padding:10px;color:var(--dim);font-style:italic;">Uma Análise Historiográfica na Obra de João Renôr Ferreira de Carvalho</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">4</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">08:30 – 08:40</td><td style="padding:10px;color:var(--creme);">Rafael Guedes Silva Sena</td><td style="padding:10px;color:var(--dim);font-style:italic;">Terricídio, Memória e Resistência em El Tren del Olvido de Moira Millán</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">5</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">08:40 – 08:50</td><td style="padding:10px;color:var(--creme);">Nycole de Sousa Carneiro</td><td style="padding:10px;color:var(--dim);font-style:italic;">Capitalismo Destrutivo e Cosmopolítica Yanomami: A Crítica de Davi Kopenawa e suas Contribuições para a Educação Descolonizadora</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">6</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">08:50 – 09:00</td><td style="padding:10px;color:var(--creme);">Gabrielle Teixeira Jardim</td><td style="padding:10px;color:var(--dim);font-style:italic;">Aviso de Incêndio: Controle Reprodutivo e Autoritarismo em O Conto da Aia e na PEC 164/2012</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">7</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">09:00 – 09:10</td><td style="padding:10px;color:var(--creme);">Washinton Marcone Silva Cirqueira</td><td style="padding:10px;color:var(--dim);font-style:italic;">A Colonialidade da Natureza e o Desmonte Socioambiental na Amazônia (2019–2022)</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">8</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">09:10 – 09:20</td><td style="padding:10px;color:var(--creme);">Washinton Marcone Silva Cirqueira</td><td style="padding:10px;color:var(--dim);font-style:italic;">Entre Ruas e Leis: A PLURI e a Disputa Popular pela Lei Orgânica de Imperatriz (MA), 1980–1990</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">9</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">09:20 – 09:30</td><td style="padding:10px;color:var(--creme);">Iasmin Sousa Silva</td><td style="padding:10px;color:var(--dim);font-style:italic;">Entre a Norma e a Realidade: A Efetividade da Consulta Prévia na Bolívia</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);background:rgba(200,134,10,0.03);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">10</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">09:30 – 09:40</td><td style="padding:10px;color:var(--creme);">Iracy Mirelly de Melo Brito</td><td style="padding:10px;color:var(--dim);font-style:italic;">Humanidade e Natureza: Uma Análise da Obra Ideias para Adiar o Fim do Mundo, de Ailton Krenak</td></tr>
+                  <tr style="border-bottom:1px solid rgba(200,134,10,0.1);"><td style="padding:10px;text-align:center;color:var(--gold);font-weight:bold;">11</td><td style="padding:10px;color:var(--dim);white-space:nowrap;">09:40 – 09:50</td><td style="padding:10px;color:var(--creme);">João Carlos Ferreira de Sousa</td><td style="padding:10px;color:var(--dim);font-style:italic;">Natureza e Bem Viver em Ailton Krenak: Uma Ontologia de Interdependência como Resistência ao Utilitarismo Moderno</td></tr>
+                  <tr style="background:rgba(200,134,10,0.08);border-top:2px solid rgba(200,134,10,0.3);"><td style="padding:10px;text-align:center;color:var(--gold);">—</td><td style="padding:10px;color:var(--gold);white-space:nowrap;font-family:'Cinzel',serif;font-size:11px;">A partir de 09:50</td><td colspan="2" style="padding:10px;color:var(--creme);font-weight:bold;">🎓 Comentários da Banca sobre os trabalhos apresentados</td></tr>
                 </tbody>
               </table>
             </div>
-
-            <a href="https://meet.google.com/iwc-imsa-seo" target="_blank" style="display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;padding:8px 16px;background:var(--verde);color:#fff;border-radius:2px;text-decoration:none;">📹 Acessar Sala de Apresentações</a>
+            <a href="https://meet.google.com/iwc-imsa-seo" target="_blank" style="display:inline-flex;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;padding:9px 18px;background:var(--verde);color:#fff;border-radius:2px;text-decoration:none;">📹 Acessar Sala de Apresentações</a>
           </div>
         </div>
       </div>
@@ -1328,6 +1295,16 @@ function showCertTab(tab) {
   document.getElementById('ctab-ouvinte').style.color   = isOuv ? '#0d0500' : 'var(--gold)';
   document.getElementById('ctab-apres').style.background   = isOuv ? 'rgba(200,134,10,0.15)' : 'var(--gold)';
   document.getElementById('ctab-apres').style.color     = isOuv ? 'var(--gold)' : '#0d0500';
+}
+
+// --- EVENTOS ACORDEÃO ---
+function toggleEvento(id) {
+  var body = document.getElementById(id);
+  var chev = document.getElementById('chev-' + id);
+  if (!body) return;
+  var isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  if (chev) { isOpen ? chev.classList.remove('open') : chev.classList.add('open'); }
 }
 
 // --- INSCRIÇÕES TABS ---
