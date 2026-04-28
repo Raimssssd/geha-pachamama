@@ -687,7 +687,7 @@ section{animation:fadeUp .6s ease-out;}
               <div style="padding:16px;">
                 <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
                   <div style="display:flex;gap:10px;padding:8px 12px;background:rgba(200,134,10,0.05);border-left:3px solid var(--gold);border-radius:2px;">
-                    <span>📖</span><span style="color:var(--creme);font-size:14px;">Lançamento de livro</span>
+                    <span>🎙️</span><span style="color:var(--creme);font-size:14px;"><strong>Mesa redonda e palestra de abertura</strong><br><span style="font-size:12px;color:var(--dim);">Mediador: Dr. Raimundo Carvalho Moura Filho</span></span>
                   </div>
                   <div style="display:flex;gap:10px;padding:8px 12px;background:rgba(200,134,10,0.05);border-left:3px solid var(--terra);border-radius:2px;">
                     <span>🎤</span>
@@ -1491,7 +1491,7 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.setDrawColor(200,134,10); doc.setLineWidth(0.5);
     doc.line(W/2 - nw/2, 91.5, W/2 + nw/2, 91.5);
     doc.setTextColor(212,184,150); doc.setFont('helvetica','normal'); doc.setFontSize(11);
-    var acao = tipo === 'ouvinte' ? 'participou como ouvinte no' : 'apresentou comunicação acadêmica no';
+    var acao = tipo === 'ouvinte' ? 'participou como ouvinte na mesa redonda e palestra de abertura do' : 'apresentou comunicação acadêmica no';
     doc.text(acao, W/2, 102, {align:'center'});
     doc.setTextColor(232,200,138); doc.setFont('helvetica','bold'); doc.setFontSize(14);
     doc.text(evento.nomeEvento, W/2, 113, {align:'center'});
