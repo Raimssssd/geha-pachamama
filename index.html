@@ -1044,7 +1044,8 @@ section{animation:fadeUp .6s ease-out;}
       </div>
       <div style="display:flex;gap:0;margin-bottom:0;">
         <button onclick="showCertTab('cert-ouvinte')" id="ctab-ouvinte" style="flex:1;padding:11px;background:var(--gold);color:#0d0500;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:none;cursor:pointer;font-weight:700;transition:.2s;">🎓 OUVINTE</button>
-        <button onclick="showCertTab('cert-apres')" id="ctab-apres" style="flex:1;padding:11px;background:rgba(200,134,10,0.15);color:var(--gold);font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.3);cursor:pointer;font-weight:700;transition:.2s;">📋 APRESENTADOR DE TRABALHO</button>
+        <button onclick="showCertTab('cert-apres')" id="ctab-apres" style="flex:1;padding:11px;background:rgba(200,134,10,0.15);color:var(--gold);font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.3);cursor:pointer;font-weight:700;transition:.2s;">📋 APRESENTADOR</button>
+        <button onclick="showCertTab('cert-monitor')" id="ctab-monitor" style="flex:1;padding:11px;background:rgba(200,134,10,0.15);color:var(--gold);font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.3);cursor:pointer;font-weight:700;transition:.2s;">🛠️ MONITOR</button>
       </div>
       <div id="cert-ouvinte" style="background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
         <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual se inscreveu como <strong style="color:var(--gold-pale);">ouvinte</strong> no III Seminário Pachamama.</p>
@@ -1063,6 +1064,15 @@ section{animation:fadeUp .6s ease-out;}
         </div>
         <div id="msg-apres" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
         <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; Certificados disponíveis após o evento (a partir de 17/04/2026).</div>
+      </div>
+      <div id="cert-monitor" style="display:none;background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">monitor</strong> do III Seminário Pachamama.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" id="email-monitor" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.35);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
+          <button onclick="buscarCertificado('monitor')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
+        </div>
+        <div id="msg-monitor" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
+        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 4 horas &nbsp;·&nbsp; Certificados disponíveis após o evento (a partir de 17/04/2026).</div>
       </div>
       <div style="margin-top:24px;text-align:center;padding:16px 24px;background:rgba(200,134,10,0.03);border:1px solid rgba(200,134,10,0.08);border-radius:4px;">
         <p style="font-size:13px;color:var(--text-dim);margin:0;">Dúvidas? Entre em contato: <strong style="color:var(--gold-pale);">pachamama.americas@gmail.com</strong></p>
@@ -1331,13 +1341,14 @@ document.addEventListener('click',function(e){if(!document.querySelector('nav').
 
 // --- CERTIFICADOS ---
 function showCertTab(tab) {
-  var isOuv = tab === 'cert-ouvinte';
-  document.getElementById('cert-ouvinte').style.display = isOuv ? 'block' : 'none';
-  document.getElementById('cert-apres').style.display   = isOuv ? 'none'  : 'block';
-  document.getElementById('ctab-ouvinte').style.background = isOuv ? 'var(--gold)' : 'rgba(200,134,10,0.15)';
-  document.getElementById('ctab-ouvinte').style.color   = isOuv ? '#0d0500' : 'var(--gold)';
-  document.getElementById('ctab-apres').style.background   = isOuv ? 'rgba(200,134,10,0.15)' : 'var(--gold)';
-  document.getElementById('ctab-apres').style.color     = isOuv ? 'var(--gold)' : '#0d0500';
+  var tabs = ['cert-ouvinte','cert-apres','cert-monitor'];
+  var btns = ['ctab-ouvinte','ctab-apres','ctab-monitor'];
+  tabs.forEach(function(t){ document.getElementById(t).style.display = (t === tab) ? 'block' : 'none'; });
+  btns.forEach(function(b){
+    var active = (b === 'ctab-' + tab.replace('cert-',''));
+    document.getElementById(b).style.background = active ? 'var(--gold)' : 'rgba(200,134,10,0.15)';
+    document.getElementById(b).style.color = active ? '#0d0500' : 'var(--gold)';
+  });
 }
 
 // --- EVENTOS ACORDEÃO ---
@@ -1390,6 +1401,7 @@ var EVENTOS = {
     disponivelA: '2026-04-16T00:00:00',
     jsonOuvinte: 'participantes-ouvintes.json',
     jsonApresentador: 'participantes-apresentadores.json',
+    jsonMonitor: 'participantes-monitores.json',
     ativo: true
   }
 };
@@ -1420,8 +1432,8 @@ function atualizarInfoEvento() {
 })();
 
 async function buscarCertificado(tipo) {
-  var emailId = tipo === 'ouvinte' ? 'email-ouvinte' : 'email-apres';
-  var msgId   = tipo === 'ouvinte' ? 'msg-ouvinte'   : 'msg-apres';
+  var emailId = tipo === 'ouvinte' ? 'email-ouvinte' : (tipo === 'apres' ? 'email-apres' : 'email-monitor');
+  var msgId   = tipo === 'ouvinte' ? 'msg-ouvinte'   : (tipo === 'apres' ? 'msg-apres'   : 'msg-monitor');
   var email   = document.getElementById(emailId).value.trim().toLowerCase();
   var msgEl   = document.getElementById(msgId);
   var selectEl = document.getElementById('select-evento');
@@ -1436,7 +1448,7 @@ async function buscarCertificado(tipo) {
     msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Os certificados ainda não foram disponibilizados. Volte após ' + ds + '.</span>';
     return;
   }
-  var arquivo = tipo === 'ouvinte' ? evento.jsonOuvinte : evento.jsonApresentador;
+  var arquivo = tipo === 'ouvinte' ? evento.jsonOuvinte : (tipo === 'apres' ? evento.jsonApresentador : evento.jsonMonitor);
   try {
     var resp = await fetch(arquivo + '?v=' + Date.now());
     if (!resp.ok) { msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Lista de participantes não disponível para este evento.</span>'; return; }
@@ -1480,8 +1492,9 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.setDrawColor(200,134,10); doc.setLineWidth(0.4); doc.line(50, 43, W-50, 43);
     doc.setFillColor(200,134,10); doc.circle(W/2, 43, 1.2, 'F');
     doc.setTextColor(245,200,66); doc.setFont('helvetica','bold');
-    doc.setFontSize(tipo === 'ouvinte' ? 20 : 17);
-    var titulo = tipo === 'ouvinte' ? 'CERTIFICADO DE PARTICIPAÇÃO' : 'CERTIFICADO DE APRESENTAÇÃO DE TRABALHO';
+    var tamanhoTitulo = tipo === 'ouvinte' ? 20 : (tipo === 'apres' ? 17 : 17);
+    doc.setFontSize(tamanhoTitulo);
+    var titulo = tipo === 'ouvinte' ? 'CERTIFICADO DE PARTICIPAÇÃO' : (tipo === 'apres' ? 'CERTIFICADO DE APRESENTAÇÃO DE TRABALHO' : 'CERTIFICADO DE MONITORIA');
     doc.text(titulo, W/2, 60, {align:'center'});
     doc.setTextColor(212,184,150); doc.setFont('helvetica','normal'); doc.setFontSize(11);
     doc.text('Certificamos que', W/2, 76, {align:'center'});
@@ -1491,7 +1504,7 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.setDrawColor(200,134,10); doc.setLineWidth(0.5);
     doc.line(W/2 - nw/2, 91.5, W/2 + nw/2, 91.5);
     doc.setTextColor(212,184,150); doc.setFont('helvetica','normal'); doc.setFontSize(11);
-    var acao = tipo === 'ouvinte' ? 'participou como ouvinte na mesa redonda e palestra de abertura do' : 'apresentou comunicação acadêmica no';
+    var acao = tipo === 'ouvinte' ? 'participou como ouvinte na mesa redonda e palestra de abertura do' : (tipo === 'apres' ? 'apresentou comunicação acadêmica no' : 'atuou como monitor(a) no');
     doc.text(acao, W/2, 102, {align:'center'});
     doc.setTextColor(232,200,138); doc.setFont('helvetica','bold'); doc.setFontSize(14);
     doc.text(evento.nomeEvento, W/2, 113, {align:'center'});
@@ -1517,7 +1530,7 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.text('Cód: ' + certId, W-31, H-8, {align:'center'});
     doc.setTextColor(80,60,30); doc.setFontSize(7);
     doc.text(evento.rodape, W/2, H-8, {align:'center'});
-    var nomeArq = 'Certificado-' + (tipo==='ouvinte'?'Ouvinte':'Apresentador') + '-' + eventoId + '.pdf';
+    var nomeArq = 'Certificado-' + (tipo==='ouvinte'?'Ouvinte':(tipo==='apres'?'Apresentador':'Monitor')) + '-' + eventoId + '.pdf';
     doc.save(nomeArq);
   } catch(err) { alert('Erro ao gerar certificado: ' + err.message); }
 }
