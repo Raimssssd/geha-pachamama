@@ -892,6 +892,7 @@ section{animation:fadeUp .6s ease-out;}
           <button class="tab-btn active" onclick="showTab('inscricao-ouvinte')">Ouvinte</button>
           <button class="tab-btn" onclick="showTab('inscricao-apresentador')">Apresentador</button>
         </div>
+        <p style="font-size:11px;color:var(--dim);margin:8px 0 0;"><span style="color:var(--terra-l);">*</span> Campos obrigatórios</p>
 
         <!-- FORM OUVINTE -->
         <div id="inscricao-ouvinte" class="tab-panel active">
@@ -901,7 +902,7 @@ section{animation:fadeUp .6s ease-out;}
             <p style="display:none;"><label>Não preencha isto:<input name="bot-field" /></label></p>
 
             <div style="margin-bottom:16px;">
-              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Edição do Seminário</label>
+              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Edição do Seminário <span style="color:var(--terra-l);">*</span></label>
               <select name="edicao" required class="fi" style="width:100%;cursor:pointer;">
                 <option value="">Selecione a edição...</option>
                 <option value="IV Seminário Internacional Pachamama (2026)">IV Seminário Internacional Pachamama — 2026</option>
@@ -912,8 +913,8 @@ section{animation:fadeUp .6s ease-out;}
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-              <input type="text" name="nome" placeholder="Nome completo" required style="grid-column:1/-1;" class="fi">
-              <input type="email" name="email" placeholder="E-mail" required class="fi">
+              <input type="text" name="nome" placeholder="Nome completo *" required style="grid-column:1/-1;" class="fi">
+              <input type="email" name="email" placeholder="E-mail *" required class="fi">
               <input type="tel" name="telefone" placeholder="Telefone" class="fi">
               <input type="text" name="instituicao" placeholder="Instituição" class="fi">
             </div>
@@ -924,13 +925,20 @@ section{animation:fadeUp .6s ease-out;}
 
         <!-- FORM APRESENTADOR -->
         <div id="inscricao-apresentador" class="tab-panel">
+          <div style="background:rgba(200,134,10,0.06);border:1px solid rgba(200,134,10,0.25);border-left:4px solid var(--gold);border-radius:4px;padding:16px 20px;margin-bottom:20px;">
+            <p style="font-family:'Cinzel',serif;font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Instruções</p>
+            <p style="font-size:13px;color:var(--creme);line-height:1.8;margin-bottom:8px;">Caro(a) pesquisador(a),</p>
+            <p style="font-size:13px;color:var(--dim);line-height:1.8;margin-bottom:8px;">Sua participação como apresentador(a) de trabalho implica aceitar que sua apresentação será avaliada por uma banca composta por professores universitários.</p>
+            <p style="font-size:13px;color:var(--dim);line-height:1.8;margin-bottom:8px;">Além disso, você está convidado(a) a enviar o texto final do trabalho para compor os anais do evento, até o dia <strong style="color:var(--gold-pale);">08 de novembro</strong>, seguindo o template abaixo, que será disponibilizado em seguida.</p>
+            <p style="font-size:13px;color:var(--dim);line-height:1.8;">Agradecemos pela participação e contribuição no evento.</p>
+          </div>
           <p style="margin-bottom:16px;color:var(--dim);">Inscreva-se como apresentador e envie o resumo de sua comunicação.</p>
           <form name="apresentador" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="apresentador">
             <p style="display:none;"><label>Não preencha isto:<input name="bot-field" /></label></p>
 
             <div style="margin-bottom:16px;">
-              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Edição do Seminário</label>
+              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Edição do Seminário <span style="color:var(--terra-l);">*</span></label>
               <select name="edicao" required class="fi" style="width:100%;cursor:pointer;">
                 <option value="">Selecione a edição...</option>
                 <option value="IV Seminário Internacional Pachamama (2026)">IV Seminário Internacional Pachamama — 2026</option>
@@ -941,13 +949,13 @@ section{animation:fadeUp .6s ease-out;}
             </div>
 
             <div style="margin-bottom:16px;">
-              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Título da Comunicação</label>
-              <input type="text" name="titulo" placeholder="Digite o título" required class="fi">
+              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Título da Comunicação <span style="color:var(--terra-l);">*</span></label>
+              <input type="text" name="titulo" placeholder="Digite o título *" required class="fi">
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-              <input type="text" name="autor" placeholder="Autor (nome completo)" required class="fi" style="grid-column:1/-1;">
-              <input type="email" name="email" placeholder="E-mail do autor" required class="fi">
+              <input type="text" name="autor" placeholder="Autor (nome completo) *" required class="fi" style="grid-column:1/-1;">
+              <input type="email" name="email" placeholder="E-mail do autor *" required class="fi">
               <input type="text" name="instituicao" placeholder="Instituição" class="fi">
             </div>
 
@@ -957,8 +965,8 @@ section{animation:fadeUp .6s ease-out;}
             </div>
 
             <div style="margin-bottom:16px;">
-              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Resumo (máx. 300 palavras)</label>
-              <textarea name="resumo" placeholder="Digite o resumo aqui..." required class="ft" style="max-width:100%;"></textarea>
+              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Resumo (máx. 300 palavras) <span style="color:var(--terra-l);">*</span></label>
+              <textarea name="resumo" placeholder="Digite o resumo aqui... *" required class="ft" style="max-width:100%;"></textarea>
             </div>
 
             <div style="margin-bottom:16px;">
