@@ -1105,40 +1105,40 @@ section{animation:fadeUp .6s ease-out;}
         <button onclick="showCertTab('cert-palestrante')" id="ctab-palestrante" style="flex:1;padding:11px;background:rgba(200,134,10,0.15);color:var(--gold);font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.3);cursor:pointer;font-weight:700;transition:.2s;">🎤 PALESTRANTE</button>
       </div>
       <div id="cert-ouvinte" style="background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
-        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual se inscreveu como <strong style="color:var(--gold-pale);">ouvinte</strong> no III Seminário Pachamama.</p>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual se inscreveu como <strong style="color:var(--gold-pale);">ouvinte</strong> no <span id="evnome-ouvinte">III Seminário Pachamama</span>.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <input type="email" id="email-ouvinte" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.35);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
           <button onclick="buscarCertificado('ouvinte')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-ouvinte" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; Certificados disponíveis após o evento (a partir de 17/04/2026).</div>
+        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; <span id="disp-ouvinte">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
       </div>
       <div id="cert-apres" style="display:none;background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
-        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual submeteu sua <strong style="color:var(--gold-pale);">comunicação</strong> no III Seminário Pachamama.</p>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual submeteu sua <strong style="color:var(--gold-pale);">comunicação</strong> no <span id="evnome-apres">III Seminário Pachamama</span>.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <input type="email" id="email-apres" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.35);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
           <button onclick="buscarCertificado('apres')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-apres" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; Certificados disponíveis após o evento (a partir de 17/04/2026).</div>
+        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; <span id="disp-apres">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
       </div>
       <div id="cert-monitor" style="display:none;background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
-        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">monitor</strong> do III Seminário Pachamama.</p>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">monitor</strong> do <span id="evnome-monitor">III Seminário Pachamama</span>.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <input type="email" id="email-monitor" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.35);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
           <button onclick="buscarCertificado('monitor')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-monitor" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 4 horas &nbsp;·&nbsp; Certificados disponíveis após o evento (a partir de 17/04/2026).</div>
+        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 4 horas &nbsp;·&nbsp; <span id="disp-monitor">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
       </div>
       <div id="cert-palestrante" style="display:none;background:rgba(200,134,10,0.04);border:1px solid rgba(200,134,10,0.2);border-top:none;padding:28px 28px 24px;">
-        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">palestrante convidada</strong> do III Seminário Pachamama.</p>
+        <p style="font-size:14px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">palestrante convidada</strong> do <span id="evnome-palestrante">III Seminário Pachamama</span>.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <input type="email" id="email-palestrante" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.35);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:15px;outline:none;border-radius:2px;">
           <button onclick="buscarCertificado('palestrante')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-palestrante" style="margin-top:14px;font-size:14px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; Certificados disponíveis após o evento (a partir de 17/04/2026).</div>
+        <div style="margin-top:18px;font-size:12px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.1);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; <span id="disp-palestrante">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
       </div>
       <div style="margin-top:24px;text-align:center;padding:16px 24px;background:rgba(200,134,10,0.03);border:1px solid rgba(200,134,10,0.08);border-radius:4px;">
         <p style="font-size:13px;color:var(--text-dim);margin:0;">Dúvidas? Entre em contato: <strong style="color:var(--gold-pale);">pachamama.americas@gmail.com</strong></p>
@@ -1476,6 +1476,7 @@ function showAcervoTab(tabId) {
 var EVENTOS = {
   'III-Pachamama-2026': {
     label: 'III Seminário Pachamama · 2026',
+    nomeSentenca: 'III Seminário Pachamama',
     nomeEvento: 'III SEMINÁRIO PACHAMAMA',
     subtitulo: 'Povos das Américas entre Passado e Presente: Memória, Território e Desafios Contemporâneos',
     palestraTitulo: '"O Bom Viver a partir dos povos indígenas: olhares arguedianos senti-pensantes"',
@@ -1486,14 +1487,16 @@ var EVENTOS = {
     cargaHorariaNum: '2',
     rodape: 'Imperatriz – MA, abril de 2026',
     disponivelA: '2026-04-16T00:00:00',
+    dataIndefinida: false,
     jsonOuvinte: 'III%20Pachamama/participantes-ouvintes%20%281%29.json',
     jsonApresentador: 'participantes-apresentadores.json',
     jsonMonitor: 'III%20Pachamama/participantes-monitores.json',
     jsonPalestrante: 'III%20Pachamama/participantes-palestrantes.json',
     ativo: true
   },
-  'IV-Pachamama-2026-TESTE': {
-    label: '[TESTE] IV Seminário Pachamama · 2026',
+  'IV-Pachamama-2026': {
+    label: 'IV Seminário Internacional Pachamama · 2026',
+    nomeSentenca: 'IV Seminário Internacional Pachamama',
     nomeEvento: 'IV SEMINÁRIO INTERNACIONAL PACHAMAMA',
     subtitulo: 'Protagonismo Indígena, Desafios Contemporâneos e Lutas por Direitos no Brasil e na América Latina',
     palestraTitulo: '"Autonomia, Autogoverno e Protagonismo Indígena: experiências do Peru e do México"',
@@ -1503,7 +1506,8 @@ var EVENTOS = {
     cargaHoraria: '4 (quatro) horas',
     cargaHorariaNum: '4',
     rodape: 'Imperatriz – MA, novembro de 2026',
-    disponivelA: '2020-01-01T00:00:00',
+    disponivelA: '2026-11-07T00:00:00',
+    dataIndefinida: true,
     jsonOuvinte: 'IV%20Pachamama/participantes-ouvintes.json',
     jsonApresentador: 'IV%20Pachamama/participantes-apresentadores.json',
     jsonMonitor: 'IV%20Pachamama/participantes-monitores.json',
@@ -1517,9 +1521,24 @@ function atualizarInfoEvento() {
   var infoEl   = document.getElementById('evento-info');
   if (!selectEl || !infoEl) return;
   var ev = EVENTOS[selectEl.value];
-  if (ev) {
-    infoEl.innerHTML = ev.data + ' &nbsp;·&nbsp; ' + ev.modalidade + ' &nbsp;·&nbsp; ' + ev.cargaHoraria;
-  }
+  if (!ev) return;
+  infoEl.innerHTML = ev.data + ' &nbsp;·&nbsp; ' + ev.modalidade + ' &nbsp;·&nbsp; ' + ev.cargaHoraria;
+
+  var nomeSentenca = ev.nomeSentenca || ev.label;
+  ['ouvinte','apres','monitor','palestrante'].forEach(function(tipo) {
+    var nomeEl = document.getElementById('evnome-' + tipo);
+    if (nomeEl) nomeEl.textContent = nomeSentenca;
+    var dispEl = document.getElementById('disp-' + tipo);
+    if (dispEl) {
+      if (ev.dataIndefinida) {
+        dispEl.textContent = 'Certificados disponíveis após o encerramento do evento (data exata a divulgar).';
+      } else {
+        var d = new Date(ev.disponivelA);
+        var ds = d.toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric'});
+        dispEl.textContent = 'Certificados disponíveis após o evento (a partir de ' + ds + ').';
+      }
+    }
+  });
 }
 
 (function() {
@@ -1549,9 +1568,13 @@ async function buscarCertificado(tipo) {
   if (!evento) { msgEl.innerHTML = '<span style="color:#eb5757;">❌ Evento não encontrado. Recarregue a página.</span>'; return; }
   msgEl.innerHTML = '<span style="color:var(--gold);font-style:italic;">🔍 Buscando inscrição...</span>';
   if (new Date() < new Date(evento.disponivelA)) {
-    var d = new Date(evento.disponivelA);
-    var ds = d.toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric'});
-    msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Os certificados ainda não foram disponibilizados. Volte após ' + ds + '.</span>';
+    if (evento.dataIndefinida) {
+      msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Ainda não disponível. Os certificados serão liberados após o encerramento do evento — a data exata será divulgada em breve.</span>';
+    } else {
+      var d = new Date(evento.disponivelA);
+      var ds = d.toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric'});
+      msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Os certificados ainda não foram disponibilizados. Volte após ' + ds + '.</span>';
+    }
     return;
   }
   var arquivo = tipo === 'ouvinte' ? evento.jsonOuvinte : (tipo === 'apres' ? evento.jsonApresentador : (tipo === 'monitor' ? evento.jsonMonitor : evento.jsonPalestrante));
