@@ -832,7 +832,19 @@ section{animation:fadeUp .6s ease-out;}
     <!-- INSCRIÇÕES -->
     <div id="inscricoes-container" style="margin:40px 0;padding:20px;background:rgba(200,134,10,.04);border:1px solid rgba(200,134,10,.15);border-radius:4px;">
       <h3 style="font-family:'Cinzel',serif;font-size:16px;color:var(--gold-l);margin-bottom:20px;">Inscrições</h3>
-      
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+        <div style="background:rgba(200,134,10,0.07);border:1px solid rgba(200,134,10,0.25);border-radius:4px;padding:14px 16px;">
+          <p style="margin:0 0 6px;font-size:13px;color:var(--creme);font-weight:700;">🎧 Ouvinte</p>
+          <p style="margin:0;font-size:12.5px;line-height:1.6;color:var(--dim);">Inscrições disponíveis até <span style="color:var(--gold-l);font-weight:700;">05 de novembro de 2026</span>.</p>
+        </div>
+        <div style="background:rgba(192,74,26,0.08);border:1px solid rgba(192,74,26,0.3);border-radius:4px;padding:14px 16px;">
+          <p style="margin:0 0 6px;font-size:13px;color:var(--creme);font-weight:700;">📋 Apresentador(a) de trabalho</p>
+          <p style="margin:0 0 6px;font-size:12.5px;line-height:1.6;color:var(--dim);">Inscrições disponíveis até <span style="color:var(--terra-l);font-weight:700;">15 de outubro de 2026</span>.</p>
+          <p style="margin:0;font-size:11.5px;line-height:1.6;color:rgba(240,230,208,.5);">Aberta a pesquisadores(as) de qualquer instituição que desejem submeter comunicações científicas para avaliação por banca de professores universitários.</p>
+        </div>
+      </div>
+
       <div class="tabs-container">
         <div class="tab-buttons">
           <button class="tab-btn active" onclick="showTab('inscricao-ouvinte')">Ouvinte</button>
@@ -919,7 +931,9 @@ section{animation:fadeUp .6s ease-out;}
 
             <div style="margin-bottom:16px;">
               <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);">Resumo (máx. 300 palavras) <span style="color:var(--terra-l);">*</span></label>
-              <textarea name="resumo" placeholder="Digite o resumo aqui... *" required class="ft" style="max-width:100%;"></textarea>
+              <p style="margin:0 0 6px;font-size:12px;line-height:1.6;color:var(--dim);">O resumo deve ser um <strong style="color:var(--creme);">único parágrafo</strong> (sem subtítulos), contendo: apresentação do tema, objetivo, metodologia, resultados e conclusão. O nome do(a) autor(a) deve constar no início do texto.</p>
+              <p style="margin:0 0 8px;font-size:11.5px;line-height:1.6;color:var(--terra-l);">⚠️ Apague o modelo abaixo antes de enviar e escreva o resumo em texto corrido, sem os rótulos.</p>
+              <textarea name="resumo" required class="ft" style="max-width:100%;">Apresentação do tema: ______. Objetivo: ________. Metodologia: ________. Resultados: _______. Conclusão: ______.</textarea>
             </div>
 
             <div style="margin-bottom:16px;">
