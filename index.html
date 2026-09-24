@@ -946,8 +946,10 @@ section{animation:fadeUp .6s ease-out;}
               <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:13px;color:var(--gold);">Nível de Formação <span style="color:var(--terra-l);">*</span></label>
               <select name="nivel" id="nivelFormacao" required class="fi" style="width:100%;cursor:pointer;">
                 <option value="">Selecione...</option>
-                <option value="Graduação">Graduação</option>
-                <option value="Pós-Graduação">Pós-Graduação (Especialização, Mestrado ou Doutorado)</option>
+                <option value="Graduação em andamento">Graduação em andamento</option>
+                <option value="Graduado(a)">Graduado(a)</option>
+                <option value="Pós-Graduação em andamento">Pós-Graduação em andamento (Especialização, Mestrado ou Doutorado)</option>
+                <option value="Pós-Graduado(a)">Pós-Graduado(a) (Especialista, Mestre ou Doutor)</option>
                 <option value="Docente/Pesquisador(a)/Outro">Docente / Pesquisador(a) / Outro</option>
               </select>
             </div>
@@ -1762,7 +1764,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var orientadorHint = document.getElementById('orientadorHint');
   if (nivelSel && orientadorInput && orientadorHint) {
     nivelSel.addEventListener('change', function() {
-      var exigeOrientador = (nivelSel.value === 'Graduação' || nivelSel.value === 'Pós-Graduação');
+      var exigeOrientador = (nivelSel.value === 'Graduação em andamento' || nivelSel.value === 'Pós-Graduação em andamento');
       orientadorInput.required = exigeOrientador;
       if (exigeOrientador) {
         orientadorHint.textContent = '*';
