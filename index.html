@@ -926,8 +926,19 @@ section{animation:fadeUp .6s ease-out;}
             </div>
 
             <div style="margin-bottom:16px;">
-              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:13px;color:var(--gold);">Orientador(a) <span style="opacity:0.6;font-size:12px;">(se houver)</span></label>
-              <input type="text" name="orientador" placeholder="Nome do orientador(a)" class="fi">
+              <label style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:13px;color:var(--gold);">Nível de Formação <span style="color:var(--terra-l);">*</span></label>
+              <select name="nivel" id="nivelFormacao" required class="fi" style="width:100%;cursor:pointer;">
+                <option value="">Selecione...</option>
+                <option value="Graduação">Graduação</option>
+                <option value="Pós-Graduação">Pós-Graduação (Especialização, Mestrado ou Doutorado)</option>
+                <option value="Docente/Pesquisador(a)/Outro">Docente / Pesquisador(a) / Outro</option>
+              </select>
+            </div>
+
+            <div style="margin-bottom:16px;">
+              <label id="labelOrientador" style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:13px;color:var(--gold);">Orientador(a) <span id="orientadorHint" style="opacity:0.6;font-size:12px;">(se houver)</span></label>
+              <input type="text" name="orientador" id="orientadorInput" placeholder="Nome do orientador(a)" class="fi">
+              <p style="margin:6px 0 0;font-size:13px;color:var(--dim);">Obrigatório para estudantes de Graduação e Pós-Graduação.</p>
             </div>
 
             <div style="margin-bottom:16px;">
@@ -1727,6 +1738,28 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('sucOuvinte').style.display = 'none';
     });
   });
+
+  // Torna o campo Orientador(a) obrigatorio para Graduacao e Pos-Graduacao
+  var nivelSel = document.getElementById('nivelFormacao');
+  var orientadorInput = document.getElementById('orientadorInput');
+  var orientadorHint = document.getElementById('orientadorHint');
+  if (nivelSel && orientadorInput && orientadorHint) {
+    nivelSel.addEventListener('change', function() {
+      var exigeOrientador = (nivelSel.value === 'Graduação' || nivelSel.value === 'Pós-Graduação');
+      orientadorInput.required = exigeOrientador;
+      if (exigeOrientador) {
+        orientadorHint.textContent = '*';
+        orientadorHint.style.color = 'var(--terra-l)';
+        orientadorHint.style.opacity = '1';
+        orientadorInput.placeholder = 'Nome do orientador(a) *';
+      } else {
+        orientadorHint.textContent = '(se houver)';
+        orientadorHint.style.color = '';
+        orientadorHint.style.opacity = '0.6';
+        orientadorInput.placeholder = 'Nome do orientador(a)';
+      }
+    });
+  }
 
   var fCom = document.getElementById('formComunicado');
   if (fCom) fCom.addEventListener('submit', function(e) {
