@@ -956,7 +956,11 @@ section{animation:fadeUp .6s ease-out;}
 
             <div style="margin-bottom:16px;">
               <label id="labelOrientador" style="display:block;margin-bottom:8px;font-family:'Cinzel',serif;font-size:13px;color:var(--gold);">Orientador(a) <span id="orientadorHint" style="opacity:0.6;font-size:12px;">(se houver)</span></label>
-              <input type="text" name="orientador" id="orientadorInput" placeholder="Nome do orientador(a)" class="fi">
+              <input type="text" name="orientador" id="orientadorInput" placeholder="Nome do orientador(a)" class="fi" style="margin-bottom:12px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <input type="text" name="orientador-instituicao" id="orientadorInstituicaoInput" placeholder="Instituição do orientador(a)" class="fi">
+                <input type="email" name="orientador-email" id="orientadorEmailInput" placeholder="E-mail do orientador(a)" class="fi">
+              </div>
               <p style="margin:6px 0 0;font-size:13px;color:var(--dim);">Obrigatório para estudantes de Graduação e Pós-Graduação.</p>
             </div>
 
@@ -1758,24 +1762,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Torna o campo Orientador(a) obrigatorio para Graduacao e Pos-Graduacao
+  // Torna os campos do Orientador(a) obrigatorios para Graduacao e Pos-Graduacao
   var nivelSel = document.getElementById('nivelFormacao');
   var orientadorInput = document.getElementById('orientadorInput');
   var orientadorHint = document.getElementById('orientadorHint');
-  if (nivelSel && orientadorInput && orientadorHint) {
+  var orientadorInstituicaoInput = document.getElementById('orientadorInstituicaoInput');
+  var orientadorEmailInput = document.getElementById('orientadorEmailInput');
+  if (nivelSel && orientadorInput && orientadorHint && orientadorInstituicaoInput && orientadorEmailInput) {
     nivelSel.addEventListener('change', function() {
       var exigeOrientador = (nivelSel.value === 'Graduação em andamento' || nivelSel.value === 'Pós-Graduação em andamento');
       orientadorInput.required = exigeOrientador;
+      orientadorInstituicaoInput.required = exigeOrientador;
+      orientadorEmailInput.required = exigeOrientador;
       if (exigeOrientador) {
         orientadorHint.textContent = '*';
         orientadorHint.style.color = 'var(--terra-l)';
         orientadorHint.style.opacity = '1';
         orientadorInput.placeholder = 'Nome do orientador(a) *';
+        orientadorInstituicaoInput.placeholder = 'Instituição do orientador(a) *';
+        orientadorEmailInput.placeholder = 'E-mail do orientador(a) *';
       } else {
         orientadorHint.textContent = '(se houver)';
         orientadorHint.style.color = '';
         orientadorHint.style.opacity = '0.6';
         orientadorInput.placeholder = 'Nome do orientador(a)';
+        orientadorInstituicaoInput.placeholder = 'Instituição do orientador(a)';
+        orientadorEmailInput.placeholder = 'E-mail do orientador(a)';
       }
     });
   }
