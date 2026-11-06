@@ -1169,11 +1169,13 @@ section{animation:fadeUp .6s ease-out;}
         </select>
         <div id="evento-info" style="margin-top:10px;font-size:16px;color:var(--text-dim);font-style:italic;"></div>
       </div>
-      <div style="display:flex;gap:0;margin-bottom:0;">
-        <button onclick="showCertTab('cert-ouvinte')" id="ctab-ouvinte" style="flex:1;padding:11px;background:var(--gold);color:#0d0500;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:none;cursor:pointer;font-weight:700;transition:.2s;">🎓 OUVINTE</button>
-        <button onclick="showCertTab('cert-apres')" id="ctab-apres" style="flex:1;padding:11px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">📋 APRESENTADOR</button>
-        <button onclick="showCertTab('cert-monitor')" id="ctab-monitor" style="flex:1;padding:11px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">🛠️ MONITOR</button>
-        <button onclick="showCertTab('cert-palestrante')" id="ctab-palestrante" style="flex:1;padding:11px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">🎤 PALESTRANTE</button>
+      <div style="display:flex;gap:0;flex-wrap:wrap;margin-bottom:0;">
+        <button onclick="showCertTab('cert-ouvinte')" id="ctab-ouvinte" style="flex:1;min-width:110px;padding:11px 6px;background:var(--gold);color:#0d0500;font-family:Cinzel,serif;font-size:9px;letter-spacing:1.5px;border:none;cursor:pointer;font-weight:700;transition:.2s;">🎓 OUVINTE</button>
+        <button onclick="showCertTab('cert-oficina-ouvinte')" id="ctab-oficina-ouvinte" style="flex:1;min-width:110px;padding:11px 6px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:9px;letter-spacing:1.5px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">🪶 OFICINA (OUVINTE)</button>
+        <button onclick="showCertTab('cert-apres')" id="ctab-apres" style="flex:1;min-width:110px;padding:11px 6px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:9px;letter-spacing:1.5px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">📋 APRESENTADOR</button>
+        <button onclick="showCertTab('cert-monitor')" id="ctab-monitor" style="flex:1;min-width:110px;padding:11px 6px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:9px;letter-spacing:1.5px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">🛠️ MONITOR</button>
+        <button onclick="showCertTab('cert-palestrante')" id="ctab-palestrante" style="flex:1;min-width:110px;padding:11px 6px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:9px;letter-spacing:1.5px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">🎤 PALESTRANTE</button>
+        <button onclick="showCertTab('cert-oficina-ministrante')" id="ctab-oficina-ministrante" style="flex:1;min-width:110px;padding:11px 6px;background:rgba(200,134,10,0.21);color:var(--gold);font-family:Cinzel,serif;font-size:9px;letter-spacing:1.5px;border:1px solid rgba(200,134,10,0.4);cursor:pointer;font-weight:700;transition:.2s;">🧑‍🏫 MINISTRANTE DE OFICINA</button>
       </div>
       <div id="cert-ouvinte" style="background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.3);border-top:none;padding:28px 28px 24px;">
         <p style="font-size:18px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual se inscreveu como <strong style="color:var(--gold-pale);">ouvinte</strong> no <span id="evnome-ouvinte">III Seminário Pachamama</span>.</p>
@@ -1182,7 +1184,16 @@ section{animation:fadeUp .6s ease-out;}
           <button onclick="buscarCertificado('ouvinte')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-ouvinte" style="margin-top:14px;font-size:18px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; <span id="disp-ouvinte">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
+        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: <span id="ch-ouvinte">2 horas</span> &nbsp;·&nbsp; <span id="disp-ouvinte">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
+      </div>
+      <div id="cert-oficina-ouvinte" style="display:none;background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.3);border-top:none;padding:28px 28px 24px;">
+        <p style="font-size:18px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual participou como <strong style="color:var(--gold-pale);">ouvinte de uma oficina</strong> do <span id="evnome-oficina-ouvinte">III Seminário Pachamama</span>.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" id="email-oficina-ouvinte" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.45);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:19px;outline:none;border-radius:2px;">
+          <button onclick="buscarCertificado('oficina-ouvinte')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
+        </div>
+        <div id="msg-oficina-ouvinte" style="margin-top:14px;font-size:18px;min-height:22px;"></div>
+        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: <span id="ch-oficina-ouvinte">2 horas</span> &nbsp;·&nbsp; <span id="disp-oficina-ouvinte">Certificados disponíveis após o evento.</span></div>
       </div>
       <div id="cert-apres" style="display:none;background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.3);border-top:none;padding:28px 28px 24px;">
         <p style="font-size:18px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail com o qual submeteu sua <strong style="color:var(--gold-pale);">comunicação</strong> no <span id="evnome-apres">III Seminário Pachamama</span>.</p>
@@ -1191,7 +1202,7 @@ section{animation:fadeUp .6s ease-out;}
           <button onclick="buscarCertificado('apres')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-apres" style="margin-top:14px;font-size:18px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; <span id="disp-apres">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
+        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: <span id="ch-apres">2 horas</span> &nbsp;·&nbsp; <span id="disp-apres">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
       </div>
       <div id="cert-monitor" style="display:none;background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.3);border-top:none;padding:28px 28px 24px;">
         <p style="font-size:18px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">monitor</strong> do <span id="evnome-monitor">III Seminário Pachamama</span>.</p>
@@ -1200,7 +1211,7 @@ section{animation:fadeUp .6s ease-out;}
           <button onclick="buscarCertificado('monitor')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-monitor" style="margin-top:14px;font-size:18px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: 4 horas &nbsp;·&nbsp; <span id="disp-monitor">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
+        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: <span id="ch-monitor">4 horas</span> &nbsp;·&nbsp; <span id="disp-monitor">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
       </div>
       <div id="cert-palestrante" style="display:none;background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.3);border-top:none;padding:28px 28px 24px;">
         <p style="font-size:18px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">palestrante convidada</strong> do <span id="evnome-palestrante">III Seminário Pachamama</span>.</p>
@@ -1209,7 +1220,16 @@ section{animation:fadeUp .6s ease-out;}
           <button onclick="buscarCertificado('palestrante')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
         </div>
         <div id="msg-palestrante" style="margin-top:14px;font-size:18px;min-height:22px;"></div>
-        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: 2 horas &nbsp;·&nbsp; <span id="disp-palestrante">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
+        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: <span id="ch-palestrante">2 horas</span> &nbsp;·&nbsp; <span id="disp-palestrante">Certificados disponíveis após o evento (a partir de 17/04/2026).</span></div>
+      </div>
+      <div id="cert-oficina-ministrante" style="display:none;background:rgba(200,134,10,0.1);border:1px solid rgba(200,134,10,0.3);border-top:none;padding:28px 28px 24px;">
+        <p style="font-size:18px;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Insira o e-mail cadastrado como <strong style="color:var(--gold-pale);">ministrante de oficina</strong> do <span id="evnome-oficina-ministrante">III Seminário Pachamama</span>.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" id="email-oficina-ministrante" placeholder="seu@email.com" style="flex:1;min-width:220px;background:rgba(255,255,255,0.05);border:1px solid rgba(200,134,10,0.45);color:var(--cream);padding:11px 16px;font-family:'Crimson Pro',serif;font-size:19px;outline:none;border-radius:2px;">
+          <button onclick="buscarCertificado('oficina-ministrante')" style="background:linear-gradient(135deg,var(--rust),var(--gold));color:#fff8e6;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:11px 22px;border:none;cursor:pointer;white-space:nowrap;">BUSCAR CERTIFICADO</button>
+        </div>
+        <div id="msg-oficina-ministrante" style="margin-top:14px;font-size:18px;min-height:22px;"></div>
+        <div style="margin-top:18px;font-size:16px;color:var(--text-dim);font-style:italic;border-top:1px solid rgba(200,134,10,0.2);padding-top:14px;">⏱ Carga horária: <span id="ch-oficina-ministrante">2 horas</span> &nbsp;·&nbsp; <span id="disp-oficina-ministrante">Certificados disponíveis após o evento.</span></div>
       </div>
       <div style="margin-top:24px;text-align:center;padding:16px 24px;background:rgba(200,134,10,0.09);border:1px solid rgba(200,134,10,0.18);border-radius:4px;">
         <p style="font-size:17px;color:var(--text-dim);margin:0;">Dúvidas? Entre em contato: <strong style="color:var(--gold-pale);">pachamama.americas@gmail.com</strong></p>
@@ -1475,8 +1495,8 @@ document.addEventListener('click',function(e){if(!document.querySelector('nav').
 
 // --- CERTIFICADOS ---
 function showCertTab(tab) {
-  var tabs = ['cert-ouvinte','cert-apres','cert-monitor','cert-palestrante'];
-  var btns = ['ctab-ouvinte','ctab-apres','ctab-monitor','ctab-palestrante'];
+  var tabs = ['cert-ouvinte','cert-oficina-ouvinte','cert-apres','cert-monitor','cert-palestrante','cert-oficina-ministrante'];
+  var btns = ['ctab-ouvinte','ctab-oficina-ouvinte','ctab-apres','ctab-monitor','ctab-palestrante','ctab-oficina-ministrante'];
   tabs.forEach(function(t){ document.getElementById(t).style.display = (t === tab) ? 'block' : 'none'; });
   btns.forEach(function(b){
     var active = (b === 'ctab-' + tab.replace('cert-',''));
@@ -1556,6 +1576,12 @@ var EVENTOS = {
     modalidade: 'Online',
     cargaHoraria: '2 (duas) horas',
     cargaHorariaNum: '2',
+    cargaHorariaPorTipo: {
+      'ouvinte': '2 (duas) horas',
+      'apres': '2 (duas) horas',
+      'monitor': '4 (quatro) horas',
+      'palestrante': '2 (duas) horas'
+    },
     rodape: 'Imperatriz – MA, abril de 2026',
     disponivelA: '2026-04-16T00:00:00',
     dataIndefinida: false,
@@ -1572,17 +1598,29 @@ var EVENTOS = {
     subtitulo: 'Protagonismo Indígena, Desafios Contemporâneos e Lutas por Direitos no Brasil e na América Latina',
     palestraTitulo: '"Autonomia, Autogoverno e Protagonismo Indígena: experiências do Peru e do México"',
     palestraInfo: 'Dra. Shyrley Tatiana Peña Aymara (PUCP · Peru) · Dr. Luis Alejandro Pérez Ortiz (ENES-UNAM · México)',
+    comissaoCoordenacao: 'Coordenação Geral: Dr. Raimundo Carvalho Moura Filho (UEMASUL/UNITINS)',
+    comissaoColaboradores: 'Comissão Organizadora: Dra. Regina Costa Lima · Dra. Shyrley Tatiana Peña Aymara · Dra. Fernanda Miler · Dr. Luis Alejandro Pérez Ortiz',
     data: '05 e 06 de novembro de 2026',
     modalidade: 'Presencial + Online',
     cargaHoraria: '4 (quatro) horas',
     cargaHorariaNum: '4',
+    cargaHorariaPorTipo: {
+      'ouvinte': '4 (quatro) horas',
+      'oficina-ouvinte': '2 (duas) horas',
+      'apres': '2 (duas) horas',
+      'monitor': '8 (oito) horas',
+      'palestrante': '2 (duas) horas',
+      'oficina-ministrante': '2 (duas) horas'
+    },
     rodape: 'Imperatriz – MA, novembro de 2026',
     disponivelA: '2026-11-06T00:00:00',
     dataIndefinida: false,
     jsonOuvinte: 'IV%20Pachamama/participantes-ouvintes.json',
+    jsonOficinaOuvinte: 'IV%20Pachamama/participantes-oficina-ouvintes.json',
     jsonApresentador: 'IV%20Pachamama/participantes-apresentadores.json',
     jsonMonitor: 'IV%20Pachamama/participantes-monitores.json',
     jsonPalestrante: 'IV%20Pachamama/participantes-palestrantes.json',
+    jsonOficinaMinistrante: 'IV%20Pachamama/participantes-oficina-ministrantes.json',
     ativo: true
   }
 };
@@ -1596,9 +1634,14 @@ function atualizarInfoEvento() {
   infoEl.innerHTML = ev.data + ' &nbsp;·&nbsp; ' + ev.modalidade + ' &nbsp;·&nbsp; ' + ev.cargaHoraria;
 
   var nomeSentenca = ev.nomeSentenca || ev.label;
-  ['ouvinte','apres','monitor','palestrante'].forEach(function(tipo) {
+  ['ouvinte','oficina-ouvinte','apres','monitor','palestrante','oficina-ministrante'].forEach(function(tipo) {
     var nomeEl = document.getElementById('evnome-' + tipo);
     if (nomeEl) nomeEl.textContent = nomeSentenca;
+    var chEl = document.getElementById('ch-' + tipo);
+    if (chEl) {
+      var ch = ev.cargaHorariaPorTipo && ev.cargaHorariaPorTipo[tipo];
+      chEl.textContent = ch || ev.cargaHoraria;
+    }
     var dispEl = document.getElementById('disp-' + tipo);
     if (dispEl) {
       if (ev.dataIndefinida) {
@@ -1628,15 +1671,25 @@ function atualizarInfoEvento() {
 })();
 
 async function buscarCertificado(tipo) {
-  var emailId = tipo === 'ouvinte' ? 'email-ouvinte' : (tipo === 'apres' ? 'email-apres' : (tipo === 'monitor' ? 'email-monitor' : 'email-palestrante'));
-  var msgId   = tipo === 'ouvinte' ? 'msg-ouvinte'   : (tipo === 'apres' ? 'msg-apres'   : (tipo === 'monitor' ? 'msg-monitor'   : 'msg-palestrante'));
-  var email   = document.getElementById(emailId).value.trim().toLowerCase();
-  var msgEl   = document.getElementById(msgId);
+  var campos = {
+    'ouvinte':            { emailId: 'email-ouvinte',            msgId: 'msg-ouvinte',            arquivo: 'jsonOuvinte' },
+    'oficina-ouvinte':    { emailId: 'email-oficina-ouvinte',    msgId: 'msg-oficina-ouvinte',    arquivo: 'jsonOficinaOuvinte' },
+    'apres':              { emailId: 'email-apres',              msgId: 'msg-apres',              arquivo: 'jsonApresentador' },
+    'monitor':            { emailId: 'email-monitor',            msgId: 'msg-monitor',            arquivo: 'jsonMonitor' },
+    'palestrante':        { emailId: 'email-palestrante',        msgId: 'msg-palestrante',        arquivo: 'jsonPalestrante' },
+    'oficina-ministrante':{ emailId: 'email-oficina-ministrante',msgId: 'msg-oficina-ministrante',arquivo: 'jsonOficinaMinistrante' }
+  };
+  var cfg = campos[tipo];
+  if (!cfg) return;
+  var email   = document.getElementById(cfg.emailId).value.trim().toLowerCase();
+  var msgEl   = document.getElementById(cfg.msgId);
   var selectEl = document.getElementById('select-evento');
   var eventoId = selectEl ? selectEl.value : 'III-Pachamama-2026';
   var evento   = EVENTOS[eventoId];
   if (!email) { msgEl.innerHTML = '<span style="color:#e8c88a;">⚠️ Por favor, informe seu e-mail.</span>'; return; }
   if (!evento) { msgEl.innerHTML = '<span style="color:#eb5757;">❌ Evento não encontrado. Recarregue a página.</span>'; return; }
+  var arquivo = evento[cfg.arquivo];
+  if (!arquivo) { msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Esse tipo de certificado não está disponível para o evento selecionado.</span>'; return; }
   msgEl.innerHTML = '<span style="color:var(--gold);font-style:italic;">🔍 Buscando inscrição...</span>';
   if (new Date() < new Date(evento.disponivelA)) {
     if (evento.dataIndefinida) {
@@ -1648,7 +1701,6 @@ async function buscarCertificado(tipo) {
     }
     return;
   }
-  var arquivo = tipo === 'ouvinte' ? evento.jsonOuvinte : (tipo === 'apres' ? evento.jsonApresentador : (tipo === 'monitor' ? evento.jsonMonitor : evento.jsonPalestrante));
   try {
     var resp = await fetch(arquivo + '?v=' + Date.now());
     if (!resp.ok) { msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Lista de participantes não disponível para este evento.</span>'; return; }
@@ -1694,7 +1746,15 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.setTextColor(245,200,66); doc.setFont('helvetica','bold');
     var tamanhoTitulo = tipo === 'ouvinte' ? 20 : 17;
     doc.setFontSize(tamanhoTitulo);
-    var titulo = tipo === 'ouvinte' ? 'CERTIFICADO DE PARTICIPAÇÃO' : (tipo === 'apres' ? 'CERTIFICADO DE APRESENTAÇÃO DE TRABALHO' : (tipo === 'monitor' ? 'CERTIFICADO DE MONITORIA' : 'CERTIFICADO DE PALESTRANTE CONVIDADA'));
+    var titulos = {
+      'ouvinte': 'CERTIFICADO DE PARTICIPAÇÃO',
+      'oficina-ouvinte': 'CERTIFICADO DE PARTICIPAÇÃO EM OFICINA',
+      'apres': 'CERTIFICADO DE APRESENTAÇÃO DE TRABALHO',
+      'monitor': 'CERTIFICADO DE MONITORIA',
+      'palestrante': 'CERTIFICADO DE PALESTRANTE CONVIDADA',
+      'oficina-ministrante': 'CERTIFICADO DE MINISTRANTE DE OFICINA'
+    };
+    var titulo = titulos[tipo] || 'CERTIFICADO DE PARTICIPAÇÃO';
     doc.text(titulo, W/2, 60, {align:'center'});
     doc.setTextColor(212,184,150); doc.setFont('helvetica','normal'); doc.setFontSize(11);
     doc.text('Certificamos que', W/2, 76, {align:'center'});
@@ -1704,18 +1764,34 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.setDrawColor(200,134,10); doc.setLineWidth(0.5);
     doc.line(W/2 - nw/2, 91.5, W/2 + nw/2, 91.5);
     doc.setTextColor(212,184,150); doc.setFont('helvetica','normal'); doc.setFontSize(11);
-    var acao = tipo === 'ouvinte' ? 'participou como ouvinte na mesa redonda e palestra de abertura do' : (tipo === 'apres' ? 'apresentou comunicação acadêmica no' : (tipo === 'monitor' ? 'atuou como monitor(a) no' : 'proferiu palestra de abertura no'));
+    var acoes = {
+      'ouvinte': 'participou como ouvinte na mesa redonda e palestra de abertura do',
+      'oficina-ouvinte': 'participou como ouvinte da oficina realizada no âmbito do',
+      'apres': 'apresentou comunicação acadêmica no',
+      'monitor': 'atuou como monitor(a) no',
+      'palestrante': 'proferiu palestra de abertura no',
+      'oficina-ministrante': 'atuou como ministrante de oficina no âmbito do'
+    };
+    var acao = acoes[tipo] || 'participou do';
     doc.text(acao, W/2, 100, {align:'center'});
     doc.setTextColor(232,200,138); doc.setFont('helvetica','bold'); doc.setFontSize(14);
     doc.text(evento.nomeEvento, W/2, 110, {align:'center'});
     doc.setTextColor(180,150,110); doc.setFont('helvetica','italic'); doc.setFontSize(8);
     doc.text(evento.subtitulo, W/2, 118, {align:'center'});
-    doc.setTextColor(232,200,138); doc.setFont('helvetica','italic'); doc.setFontSize(8.5);
-    doc.text(evento.palestraTitulo, W/2, 126, {align:'center'});
-    doc.setTextColor(180,150,110); doc.setFont('helvetica','normal'); doc.setFontSize(8);
-    doc.text(evento.palestraInfo, W/2, 132, {align:'center'});
+    if (evento.comissaoCoordenacao) {
+      doc.setTextColor(232,200,138); doc.setFont('helvetica','italic'); doc.setFontSize(8.5);
+      doc.text(evento.comissaoCoordenacao, W/2, 126, {align:'center'});
+      doc.setTextColor(180,150,110); doc.setFont('helvetica','normal'); doc.setFontSize(8);
+      doc.text(evento.comissaoColaboradores, W/2, 132, {align:'center'});
+    } else {
+      doc.setTextColor(232,200,138); doc.setFont('helvetica','italic'); doc.setFontSize(8.5);
+      doc.text(evento.palestraTitulo, W/2, 126, {align:'center'});
+      doc.setTextColor(180,150,110); doc.setFont('helvetica','normal'); doc.setFontSize(8);
+      doc.text(evento.palestraInfo, W/2, 132, {align:'center'});
+    }
     doc.setTextColor(160,130,90); doc.setFont('helvetica','normal'); doc.setFontSize(8);
-    doc.text(evento.data + '  ·  Modalidade ' + evento.modalidade + '  ·  Carga horária: ' + evento.cargaHoraria, W/2, 138, {align:'center'});
+    var cargaHorariaTipo = (evento.cargaHorariaPorTipo && evento.cargaHorariaPorTipo[tipo]) || evento.cargaHoraria;
+    doc.text(evento.data + '  ·  Modalidade ' + evento.modalidade + '  ·  Carga horária: ' + cargaHorariaTipo, W/2, 138, {align:'center'});
     doc.setDrawColor(200,134,10); doc.setLineWidth(0.3); doc.line(70, 145, W-70, 145);
     doc.setFillColor(200,134,10); doc.circle(W/2, 145, 1, 'F');
     if (sigBase64) { doc.addImage(sigBase64, 'PNG', W/2 - 46, 146, 92, 34, '', 'FAST'); }
@@ -1734,7 +1810,15 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.text('Cód: ' + certId, W-31, H-8, {align:'center'});
     doc.setTextColor(80,60,30); doc.setFontSize(7);
     doc.text(evento.rodape, W/2, H-8, {align:'center'});
-    var nomeArq = 'Certificado-' + (tipo==='ouvinte'?'Ouvinte':(tipo==='apres'?'Apresentador':(tipo==='monitor'?'Monitor':'Palestrante'))) + '-' + eventoId + '.pdf';
+    var nomesArq = {
+      'ouvinte': 'Ouvinte',
+      'oficina-ouvinte': 'Ouvinte-Oficina',
+      'apres': 'Apresentador',
+      'monitor': 'Monitor',
+      'palestrante': 'Palestrante',
+      'oficina-ministrante': 'Ministrante-Oficina'
+    };
+    var nomeArq = 'Certificado-' + (nomesArq[tipo] || tipo) + '-' + eventoId + '.pdf';
     doc.save(nomeArq);
   } catch(err) { alert('Erro ao gerar certificado: ' + err.message); }
 }
