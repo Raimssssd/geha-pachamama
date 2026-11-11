@@ -1705,7 +1705,16 @@ async function buscarCertificado(tipo) {
     var resp = await fetch(arquivo + '?v=' + Date.now());
     if (!resp.ok) { msgEl.innerHTML = '<span style="color:var(--text-dim);">⏳ Lista de participantes não disponível para este evento.</span>'; return; }
     var dados = await resp.json();
-    var nome  = dados[email];
+    var entrada = dados[email];
+    if (!entrada) { msgEl.innerHTML = '<span style="color:#eb5757;">❌ E-mail não encontrado. Verifique se é o mesmo usado na inscrição do evento selecionado.</span>'; return; }
+    var nome, tituloPersonalizado, infoPersonalizado;
+    if (typeof entrada === 'string') {
+      nome = entrada;
+    } else {
+      nome = entrada.nome;
+      tituloPersonalizado = entrada.titulo;
+      infoPersonalizado = entrada.info;
+    }
     if (!nome) { msgEl.innerHTML = '<span style="color:#eb5757;">❌ E-mail não encontrado. Verifique se é o mesmo usado na inscrição do evento selecionado.</span>'; return; }
     msgEl.innerHTML = '<span style="color:#6fcf97;">✓ Inscrição confirmada! Gerando certificado...</span>';
     var sigBase64 = null;
@@ -1720,14 +1729,14 @@ async function buscarCertificado(tipo) {
         });
       }
     } catch(e) {}
-    gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento);
+    gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPersonalizado, infoPersonalizado);
     msgEl.innerHTML = '<span style="color:#6fcf97;">✅ Certificado gerado! Verifique seus downloads.</span>';
   } catch(err) {
     msgEl.innerHTML = '<span style="color:#eb5757;">❌ Erro: ' + err.message + '</span>';
   }
 }
 
-function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
+function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPersonalizado, infoPersonalizado) {
   try {
     var jsPDF = window.jspdf.jsPDF;
     var doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -1778,7 +1787,17 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento) {
     doc.text(evento.nomeEvento, W/2, 110, {align:'center'});
     doc.setTextColor(180,150,110); doc.setFont('helvetica','italic'); doc.setFontSize(8);
     doc.text(evento.subtitulo, W/2, 118, {align:'center'});
-    if (evento.comissaoCoordenacao) {
+    if (tipo === 'palestrante' && tituloPersonalizado) {
+      var tSize = 8.5;
+      doc.setFont('helvetica','italic'); doc.setFontSize(tSize);
+      var tw = doc.getTextWidth(tituloPersonalizado);
+      var maxW = 190;
+      if (tw > maxW) { tSize = tSize * (maxW / tw); doc.setFontSize(tSize); }
+      doc.setTextColor(232,200,138);
+      doc.text(tituloPersonalizado, W/2, 126, {align:'center'});
+      doc.setTextColor(180,150,110); doc.setFont('helvetica','normal'); doc.setFontSize(8);
+      doc.text(infoPersonalizado || '', W/2, 132, {align:'center'});
+    } else if (evento.comissaoCoordenacao) {
       doc.setTextColor(232,200,138); doc.setFont('helvetica','italic'); doc.setFontSize(8.5);
       doc.text(evento.comissaoCoordenacao, W/2, 126, {align:'center'});
       doc.setTextColor(180,150,110); doc.setFont('helvetica','normal'); doc.setFontSize(8);
