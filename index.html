@@ -445,14 +445,9 @@ section{animation:fadeUp .6s ease-out;}
   0%, 100% { box-shadow: 0 4px 28px rgba(200,134,10,0.45); }
   50%      { box-shadow: 0 4px 48px rgba(245,200,66,0.75); }
 }
-#aviso-prorrogacao { animation: avisoGlow 2.2s ease-in-out infinite; }
 #aviso-anais { animation: avisoGlow 2.2s ease-in-out infinite; }
 </style>
 <div style="background:var(--bg);padding-top:28px;">
-  <a href="#eventos" id="aviso-prorrogacao" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;z-index:5;background:linear-gradient(90deg,var(--terra),var(--gold),var(--terra));padding:52px 20px;text-align:center;text-decoration:none;border-top:3px solid rgba(255,255,255,0.3);border-bottom:3px solid rgba(255,255,255,0.3);">
-    <span style="color:#fff8e6;font-family:'Cinzel',serif;font-weight:700;font-size:clamp(32px,5.8vw,68px);letter-spacing:0.5px;line-height:1.15;text-shadow:0 2px 12px rgba(0,0,0,0.45);">📋 Prazo Prorrogado: Apresentador(a) de Trabalho</span>
-    <span style="color:#fff8e6;font-family:'Cinzel',serif;font-weight:600;font-size:clamp(20px,3vw,40px);letter-spacing:0.5px;line-height:1.3;">até <strong>04 de novembro de 2026</strong> &nbsp;—&nbsp; Inscreva-se →</span>
-  </a>
   <a href="#eventos" id="aviso-anais" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;position:relative;z-index:5;background:linear-gradient(90deg,var(--dark),var(--terra),var(--dark));padding:52px 20px;text-align:center;text-decoration:none;border-top:3px solid rgba(255,255,255,0.2);border-bottom:3px solid rgba(255,255,255,0.2);">
     <span style="color:#fff8e6;font-family:'Cinzel',serif;font-weight:700;font-size:clamp(32px,5.8vw,68px);letter-spacing:0.5px;line-height:1.15;text-shadow:0 2px 12px rgba(0,0,0,0.45);">📝 Novo Prazo: Envio do Texto para os Anais</span>
     <span style="color:#fff8e6;font-family:'Cinzel',serif;font-weight:600;font-size:clamp(20px,3vw,40px);letter-spacing:0.5px;line-height:1.3;">até <strong>15 de dezembro de 2026</strong> &nbsp;—&nbsp; Saiba mais →</span>
@@ -740,12 +735,12 @@ section{animation:fadeUp .6s ease-out;}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
           <div style="background:rgba(200,134,10,0.13);border:1px solid rgba(200,134,10,0.35);border-radius:4px;padding:14px 16px;">
             <p style="margin:0 0 6px;font-size:17px;color:var(--creme);font-weight:700;">🎧 Ouvinte</p>
-            <p style="margin:0;font-size:16.5px;line-height:1.6;color:var(--dim);">Inscrições disponíveis até <span style="color:var(--gold-l);font-weight:700;">05 de novembro de 2026</span>.</p>
+            <p style="margin:0;font-size:16.5px;line-height:1.6;color:var(--dim);">Inscrições encerradas em <span style="color:var(--gold-l);font-weight:700;">05 de novembro de 2026</span>.</p>
           </div>
           <div style="background:rgba(192,74,26,0.14);border:1px solid rgba(192,74,26,0.4);border-radius:4px;padding:14px 16px;">
             <p style="margin:0 0 6px;font-size:17px;color:var(--creme);font-weight:700;">📋 Apresentador(a) de trabalho</p>
-            <p style="margin:0 0 6px;font-size:16.5px;line-height:1.6;color:var(--dim);">Inscrições disponíveis até <span style="color:var(--terra-l);font-weight:700;">04 de novembro de 2026</span>.</p>
-            <p style="margin:0;font-size:15.5px;line-height:1.6;color:rgba(240,230,208,.5);">Aberta a pesquisadores(as) de qualquer instituição que desejem submeter comunicações científicas para avaliação por banca de professores universitários.</p>
+            <p style="margin:0 0 6px;font-size:16.5px;line-height:1.6;color:var(--dim);">Inscrições encerradas em <span style="color:var(--terra-l);font-weight:700;">04 de novembro de 2026</span>.</p>
+            <p style="margin:0;font-size:15.5px;line-height:1.6;color:rgba(240,230,208,.5);">O IV Seminário Internacional Pachamama já foi realizado. Acompanhe o envio dos textos para os anais na seção Acervo Acadêmico.</p>
           </div>
         </div>
 
@@ -758,6 +753,10 @@ section{animation:fadeUp .6s ease-out;}
 
           <!-- FORM OUVINTE -->
           <div id="inscricao-ouvinte" class="tab-panel active">
+            <div id="ouvinte-encerrado" style="display:none;padding:18px 20px;background:rgba(200,134,10,0.08);border:1px solid rgba(200,134,10,0.3);border-radius:4px;">
+              <p style="margin:0;font-size:16.5px;line-height:1.6;color:var(--dim);">⏳ As inscrições para <strong style="color:var(--gold-l);">ouvinte</strong> do IV Seminário Internacional Pachamama foram encerradas em 05 de novembro de 2026. Fique de olho nos próximos editais do GEHA-Pachamama.</p>
+            </div>
+            <div id="ouvinte-form-wrap">
             <p style="margin-bottom:16px;color:var(--dim);">Inscreva-se como ouvinte para participar do seminário.</p>
             <form name="ouvinte" method="POST" data-netlify="true" netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="ouvinte">
@@ -783,10 +782,15 @@ section{animation:fadeUp .6s ease-out;}
 
               <button type="submit" class="btn-primary" style="width:100%;margin-top:12px;">Confirmar Inscrição</button>
             </form>
+            </div>
           </div>
 
           <!-- FORM APRESENTADOR -->
           <div id="inscricao-apresentador" class="tab-panel">
+            <div id="apres-encerrado" style="display:none;padding:18px 20px;background:rgba(192,74,26,0.08);border:1px solid rgba(192,74,26,0.35);border-radius:4px;">
+              <p style="margin:0;font-size:16.5px;line-height:1.6;color:var(--dim);">⏳ As inscrições para <strong style="color:var(--terra-l);">apresentador(a) de trabalho</strong> do IV Seminário Internacional Pachamama foram encerradas em 04 de novembro de 2026. Fique de olho nos próximos editais do GEHA-Pachamama.</p>
+            </div>
+            <div id="apres-form-wrap">
             <p style="margin-bottom:16px;color:var(--dim);">Inscreva-se como apresentador e envie o resumo de sua comunicação. <span style="color:var(--terra-l);">Veja acima as instruções sobre avaliação e envio dos anais.</span></p>
             <form name="apresentador" method="POST" data-netlify="true" netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="apresentador">
@@ -861,6 +865,7 @@ section{animation:fadeUp .6s ease-out;}
 
               <button type="submit" class="btn-primary" style="width:100%;margin-top:12px;">Enviar Inscrição</button>
             </form>
+            </div>
           </div>
         </div>
       </div>
@@ -1707,13 +1712,14 @@ async function buscarCertificado(tipo) {
     var dados = await resp.json();
     var entrada = dados[email];
     if (!entrada) { msgEl.innerHTML = '<span style="color:#eb5757;">❌ E-mail não encontrado. Verifique se é o mesmo usado na inscrição do evento selecionado.</span>'; return; }
-    var nome, tituloPersonalizado, infoPersonalizado;
+    var nome, tituloPersonalizado, infoPersonalizado, acaoPersonalizada;
     if (typeof entrada === 'string') {
       nome = entrada;
     } else {
       nome = entrada.nome;
       tituloPersonalizado = entrada.titulo;
       infoPersonalizado = entrada.info;
+      acaoPersonalizada = entrada.acao;
     }
     if (!nome) { msgEl.innerHTML = '<span style="color:#eb5757;">❌ E-mail não encontrado. Verifique se é o mesmo usado na inscrição do evento selecionado.</span>'; return; }
     msgEl.innerHTML = '<span style="color:#6fcf97;">✓ Inscrição confirmada! Gerando certificado...</span>';
@@ -1729,14 +1735,14 @@ async function buscarCertificado(tipo) {
         });
       }
     } catch(e) {}
-    gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPersonalizado, infoPersonalizado);
+    gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPersonalizado, infoPersonalizado, acaoPersonalizada);
     msgEl.innerHTML = '<span style="color:#6fcf97;">✅ Certificado gerado! Verifique seus downloads.</span>';
   } catch(err) {
     msgEl.innerHTML = '<span style="color:#eb5757;">❌ Erro: ' + err.message + '</span>';
   }
 }
 
-function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPersonalizado, infoPersonalizado) {
+function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPersonalizado, infoPersonalizado, acaoPersonalizada) {
   try {
     var jsPDF = window.jspdf.jsPDF;
     var doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -1760,7 +1766,7 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPers
       'oficina-ouvinte': 'CERTIFICADO DE PARTICIPAÇÃO EM OFICINA',
       'apres': 'CERTIFICADO DE APRESENTAÇÃO DE TRABALHO',
       'monitor': 'CERTIFICADO DE MONITORIA',
-      'palestrante': 'CERTIFICADO DE PALESTRANTE CONVIDADA',
+      'palestrante': 'CERTIFICADO DE PALESTRANTE CONVIDADO(A)',
       'oficina-ministrante': 'CERTIFICADO DE MINISTRANTE DE OFICINA'
     };
     var titulo = titulos[tipo] || 'CERTIFICADO DE PARTICIPAÇÃO';
@@ -1781,7 +1787,7 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPers
       'palestrante': 'proferiu palestra de abertura no',
       'oficina-ministrante': 'atuou como ministrante de oficina no âmbito do'
     };
-    var acao = acoes[tipo] || 'participou do';
+    var acao = acaoPersonalizada || acoes[tipo] || 'participou do';
     doc.text(acao, W/2, 100, {align:'center'});
     doc.setTextColor(232,200,138); doc.setFont('helvetica','bold'); doc.setFontSize(14);
     doc.text(evento.nomeEvento, W/2, 110, {align:'center'});
@@ -1795,8 +1801,13 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPers
       if (tw > maxW) { tSize = tSize * (maxW / tw); doc.setFontSize(tSize); }
       doc.setTextColor(232,200,138);
       doc.text(tituloPersonalizado, W/2, 126, {align:'center'});
-      doc.setTextColor(180,150,110); doc.setFont('helvetica','normal'); doc.setFontSize(8);
-      doc.text(infoPersonalizado || '', W/2, 132, {align:'center'});
+      doc.setTextColor(180,150,110); doc.setFont('helvetica','normal');
+      var iSize = 8;
+      doc.setFontSize(iSize);
+      var infoTxt = infoPersonalizado || '';
+      var iw = doc.getTextWidth(infoTxt);
+      if (iw > maxW) { iSize = iSize * (maxW / iw); doc.setFontSize(iSize); }
+      doc.text(infoTxt, W/2, 132, {align:'center'});
     } else if (evento.comissaoCoordenacao) {
       doc.setTextColor(232,200,138); doc.setFont('helvetica','italic'); doc.setFontSize(8.5);
       doc.text(evento.comissaoCoordenacao, W/2, 126, {align:'center'});
@@ -1826,7 +1837,13 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPers
     doc.setTextColor(100,75,30); doc.setFontSize(5.5);
     doc.text('Validar certificado:', W-31, H-16, {align:'center'});
     doc.text('pachamamauemasul.com', W-31, H-12, {align:'center'});
-    doc.text('Cód: ' + certId, W-31, H-8, {align:'center'});
+    var codLine = 'Cód: ' + certId;
+    var codSize = 5.5;
+    doc.setFontSize(codSize);
+    var codW = doc.getTextWidth(codLine);
+    var maxCodW = 34; // nomes longos geram um código maior; encolhe para não ultrapassar a moldura
+    if (codW > maxCodW) { codSize = Math.max(3.0, codSize * (maxCodW / codW)); doc.setFontSize(codSize); }
+    doc.text(codLine, W-31, H-8, {align:'center'});
     doc.setTextColor(80,60,30); doc.setFontSize(7);
     doc.text(evento.rodape, W/2, H-8, {align:'center'});
     var nomesArq = {
@@ -1842,15 +1859,19 @@ function gerarCertificadoPDF(nome, tipo, sigBase64, eventoId, evento, tituloPers
   } catch(err) { alert('Erro ao gerar certificado: ' + err.message); }
 }
 
-// Verifica prazo de inscrição de ouvinte (encerra 14/04/2026)
+// Verifica prazo de inscrição — IV Seminário Internacional Pachamama
 (function() {
-  var prazo = new Date('2026-04-15T00:00:00');
-  if (new Date() >= prazo) {
-    var wrap = document.getElementById('ouvinte-form-wrap');
-    var enc  = document.getElementById('ouvinte-encerrado');
-    if (wrap) wrap.style.display = 'none';
-    if (enc)  enc.style.display  = 'block';
-  }
+  var fecha = function(prazoISO, wrapId, encId) {
+    var prazo = new Date(prazoISO);
+    if (new Date() >= prazo) {
+      var wrap = document.getElementById(wrapId);
+      var enc  = document.getElementById(encId);
+      if (wrap) wrap.style.display = 'none';
+      if (enc)  enc.style.display  = 'block';
+    }
+  };
+  fecha('2026-11-06T00:00:00', 'ouvinte-form-wrap', 'ouvinte-encerrado');   // ouvinte: até 05/11/2026
+  fecha('2026-11-05T00:00:00', 'apres-form-wrap', 'apres-encerrado');      // apresentador: até 04/11/2026
 })();
 
 function submitAnaisForm(e) {
